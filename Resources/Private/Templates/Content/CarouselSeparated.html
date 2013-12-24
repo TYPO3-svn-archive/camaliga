@@ -1,0 +1,74 @@
+<f:layout name="Default" />
+
+This template is a double carousel that requires only jQuery. It shows the images and text beside each other.
+This example works only with a few elements.
+It is based on the example from enavu:
+http://web.enavu.com/tutorials/making-a-jquery-infinite-carousel-with-nice-features/
+Note 1: you need at least n+2 elements for this carousel! n: visible elements at one time.
+Note 2: you can copy and customise the extbase_carousel/Resources/Public/css/List.css to your fileadmin-folder.
+  Remove that thing from this template if you do that...
+Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+Note 4: if you want to change the width of the elements, you need to change it in the CSS-file and here:
+  f:image width="xxx" height="yyy"
+  
+  
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/CarouselSeparated.css')}" rel="stylesheet" />
+<script src="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" type="text/javascript"></script>
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div id="carousel_container12">
+ <div id="carousel_inner1">
+  <ul id="carousel_ul1">
+	<f:for each="{contents}" as="content">
+		<li><f:image src="/uploads/tx_camaliga/{content.image}" width="646" height="197" alt="{content.title}" title="{content.title}" /></li>
+	</f:for>
+  </ul>
+ </div>
+ <div id="jcarousel_txt2">
+  <div id="carousel_inner2">
+   <ul id="carousel_ul2">
+	<f:for each="{contents}" as="content">
+		<li><div class="carousel_title2">{content.title}</div></li>
+	</f:for>
+   </ul>
+  </div>
+	<div id="left_scroll12"><a href="javascript:$('#carousel_ul1').data('camaliga').slideTo('left');$('#carousel_ul2').data('camaliga').slideTo('left');">&nbsp;</a></div>
+	<div id="right_scroll12"><a href="javascript:$('#carousel_ul1').data('camaliga').slideTo('right');$('#carousel_ul2').data('camaliga').slideTo('right');">&nbsp;</a></div>
+ </div>
+</div>
+<div style="clear:both;"><!-- --></div>
+<script>
+/*<![CDATA[*/
+$(window).load(function() {
+  $('#carousel_ul1').camaliga({
+	auto_slide: 0,	// auto slide?
+    hover_pause: 0,	// pause on hover?
+	auto_slide_seconds: 5000, // auto slide in milliseconds
+	infinite: 1,	// infinite carousel? Then you need at least n+2 elements!
+	item_width: 0,	// item width of the li-element. Only needed if li has a margin>0
+	li_name: 'li'	// only needed, if you use ul,li in the element itself
+  });
+  $('#carousel_ul2').camaliga({
+	auto_slide: 0,
+    hover_pause: 0,
+	auto_slide_seconds: 5000,
+	infinite: 1,
+	item_width: 0,
+	li_name: 'li',
+	left_scroll: '#left_scroll12',	// only important if you want to change the arrow at the first element when infinite=0 (class camaliga_first will be added)
+	right_scroll: '#right_scroll12'	// only important if you want to change the arrow at the last element when infinite=0 (class camaliga_last will be added)
+  });
+});
+/*]]>*/
+</script>
+</f:then>
+<f:else>
+ <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

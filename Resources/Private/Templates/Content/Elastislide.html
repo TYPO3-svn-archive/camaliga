@@ -1,0 +1,62 @@
+<f:layout name="Default" />
+
+jQuery Elastislide example. You need the Elastislide plugin from here for this example:
+http://tympanus.net/codrops/2011/09/12/elastislide-responsive-carousel/
+Extract the zip file and copy it to your fileadmin-folder!
+Include the CSS- and JS-file with TypoScript from your fileadmin-folder and remove that 4 lines from here.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="http://tympanus.net/Development/Elastislide/css/elastislide.css" rel="stylesheet" />
+<script src="http://tympanus.net/Development/Elastislide/js/modernizr.custom.17475.js" type="text/javascript"></script>
+<script src="http://tympanus.net/Development/Elastislide/js/jquerypp.custom.js" type="text/javascript"></script>
+<script src="http://tympanus.net/Development/Elastislide/js/jquery.elastislide.js" type="text/javascript"></script>
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div class="gallery">
+	<!-- Elastislide Carousel -->
+	<ul id="carousel" class="elastislide-list">
+<f:for each="{contents}" as="content">
+	<li data-preview="/uploads/tx_camaliga/{content.image}"><a href="#"><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" height="{settings.img.thumbHeight}" /></a></li>
+</f:for>
+	</ul>
+	<!-- End Elastislide Carousel -->
+	<div class="image-preview">
+		<img id="preview" src="/clear.gif" />
+	</div>
+</div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+$(window).load(function() {
+	var current = 0,
+	preview = $( '#preview' ),
+	carouselEl = $( '#carousel' ),
+	carouselItems = carouselEl.children(),
+	carousel = carouselEl.elastislide( {
+		current : current,
+		minItems : 4,
+		onClick : function( el, pos, evt ) {
+			changeImage( el, pos );
+			evt.preventDefault();
+		},
+		onReady : function() {
+			changeImage( carouselItems.eq( current ), current );
+		}
+	} );
+	function changeImage( el, pos ) {
+		preview.attr( 'src', el.data( 'preview' ) );
+		carouselItems.removeClass( 'current-img' );
+		el.addClass( 'current-img' );
+		carousel.setCurrent( pos );
+	}
+});
+/*]]>*/
+</script>
+</f:then>
+<f:else>
+  <p>Leider wurden 0 Elemente gefunden.</p> 
+</f:else>
+</f:if>
+</f:section>

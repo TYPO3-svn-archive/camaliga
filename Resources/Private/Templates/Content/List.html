@@ -1,0 +1,35 @@
+<f:layout name="Default" />
+
+This example shows all elements among each other...
+Note 1: copy the CSS-files into your fileadmin-folder and include them via TypoScript!
+  Remove that 2 things from this template after doing that...
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+Note 3: you can use pageUid="{settings.showId}" in link.action if you have a separeted single page.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/List.css')}" rel="stylesheet" />
+
+<table class="carousel-list">
+<f:for each="{contents}" as="content">
+  <tr>
+   <td class="carousel-list-img">
+	<f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" />
+   </td>
+   <td class="carousel-list-text">
+	<div><f:link.action action="show" arguments="{content : content}">{content.title}</f:link.action></div>
+	<div><em>{content.shortdesc}</em></div>
+	<f:format.html>{content.longdesc}</f:format.html>
+	<f:if condition="{0:content.link} != {0:''}"><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></f:if>
+	<div>
+		<f:if condition="{0:content.custom1} != {0:''}">Custom 1: {content.custom1}.</f:if>
+		<f:if condition="{0:content.custom2} != {0:''}">Custom 2: {content.custom2}.</f:if>
+		<f:if condition="{0:content.custom3} != {0:''}">Custom 3: {content.custom3}.</f:if>
+	</div>
+   </td>
+  </tr>
+</f:for>
+</table>
+</f:section>

@@ -1,0 +1,32 @@
+textarea.f3-form-error {
+	background-color:#FF9F9F;
+	border: 1px #FF0000 solid;
+}
+
+input.f3-form-error {
+	background-color:#FF9F9F;
+	border: 1px #FF0000 solid;
+}
+
+.tx-camaliga table {
+	border-collapse:separate;
+	border-spacing:2px;
+}
+.tx-camaliga table tr {
+	margin:0;
+	padding:0;
+}
+.tx-camaliga table th {
+	font-weight:bold;
+}
+
+.tx-camaliga table td {
+	vertical-align:top;
+	margin:0 10px 10px 0;
+	padding:5px;
+}
+.carousel-list-img {
+	padding-right:15px;
+}
+.carousel-list-text {
+}

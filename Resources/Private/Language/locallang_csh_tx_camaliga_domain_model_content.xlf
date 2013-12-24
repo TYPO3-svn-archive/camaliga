@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="title.description">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="shortdesc.description">
+				<source>Short description</source>
+			</trans-unit>
+			<trans-unit id="longdesc.description">
+				<source>Long description</source>
+			</trans-unit>
+			<trans-unit id="link.description">
+				<source>Link to a page</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="street.description">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="latitude.description">
+				<source>Latitude</source>
+			</trans-unit>
+			<trans-unit id="longitude.description">
+				<source>Longitude</source>
+			</trans-unit>
+			<trans-unit id="custom1.description">
+				<source>Custom variable 1</source>
+			</trans-unit>
+			<trans-unit id="custom2.description">
+				<source>Custom variable 2</source>
+			</trans-unit>
+			<trans-unit id="custom3.description">
+				<source>Custom variable 3</source>
+			</trans-unit>
+			<trans-unit id="mother.description">
+				<source>Parent element of this element</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

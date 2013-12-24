@@ -1,0 +1,18 @@
+<f:be.container pageTitle="camaliga">
+<div style="padding:7px;">
+ <div style="float:right">
+  <f:be.menus.actionMenu>
+   <f:be.menus.actionMenuItem controller="Backend"  action="index"
+    label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:index.title')}" />
+   <f:be.menus.actionMenuItem controller="Backend"  action="import"
+    label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:import.title')}" />
+   <f:be.menus.actionMenuItem controller="Backend"  action="importNews"
+    label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importNews.title')}" />
+   <f:be.menus.actionMenuItem controller="Backend"  action="importPicasa"
+    label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.title')}" />
+  </f:be.menus.actionMenu>
+ </div>
+ <div> <f:be.pageInfo /> - <f:be.pagePath /> </div>
+ <f:render section="main" />
+</div>
+</f:be.container>

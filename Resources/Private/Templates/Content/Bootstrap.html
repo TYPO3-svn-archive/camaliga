@@ -1,0 +1,40 @@
+<f:layout name="Default" />
+
+This example shows a Bootstrap carousel.
+Note 1: you need Bootstrap for this example. Download it from here:
+http://twitter.github.com/bootstrap/
+Copy the JS- and CSS-file into your fileadmin-folder!
+Or better: install a Bootstrap extension and you are done!
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+<script type="text/javascript">
+/*<![CDATA[*/
+  $(document).ready(function() {
+	  $('.carousel').carousel();
+  });
+/*]]>*/
+</script>
+
+<div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+<f:for each="{contents}" as="content" iteration="iter">
+ <div class="{f:if(condition: '{iter.isFirst}', then: 'active ')}item">
+  <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+  <div class="carousel-caption">
+    <h4>{content.title}</h4>
+    <p>{content.shortdesc}
+<f:if condition="{0:content.link} != {0:''}"><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></f:if></p>
+  </div>
+ </div>
+</f:for>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+</f:section>

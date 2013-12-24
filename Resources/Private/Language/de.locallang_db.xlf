@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_camaliga_domain_model_content">
+				<target>Camaliga-Element</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.title">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.shortdesc">
+				<target>Kurze Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longdesc">
+				<target>Lange Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.link">
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image">
+				<target>Bild</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.street">
+				<target>Straße</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.zip">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.city">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.country">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.latitude">
+				<target>Latitude</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longitude">
+				<target>Longitude</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom1">
+				<target>Eigenes Feld 1</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom2">
+				<target>Eigenes Feld 2</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom3">
+				<target>Eigenes Feld 3</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mother">
+				<target>Übergeordnetes Element von diesem Element</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

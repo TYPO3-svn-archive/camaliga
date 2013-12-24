@@ -1,0 +1,34 @@
+plugin.tx_camaliga {
+	view {
+		templateRootPath = {$plugin.tx_camaliga.view.templateRootPath}
+		partialRootPath = {$plugin.tx_camaliga.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_camaliga.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_camaliga.persistence.storagePid}
+		# storagePid.ifEmpty.data = {page:uid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		rewrittenPropertyMapper = 1
+	}
+	settings {
+		defaultStoragePids =
+		defaultCatIDs =
+		listId =
+		showId =
+		sortBy =
+		sortOrder =
+		random = 0
+		onlyDistinct = 0
+		img {
+		  width = 700
+		  height = 500
+		  thumbWidth = 95
+		  thumbHeight = 68
+		}
+		debug = 0
+	}
+}
+
+# plugin.tx_camaliga._CSS_DEFAULT_STYLE ( )

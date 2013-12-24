@@ -1,0 +1,56 @@
+.ad-my-desc {
+  margin-bottom:10px;
+  padding:1px 10px;
+  background-color:#ddd;
+  width:680px;
+}
+.carousel_options {
+  margin-top:10px;
+  padding:15px 10px;
+  background-color:#ddd;
+  width:680px;
+}
+.ad-cat_item {
+  clear:both;
+  border-top:2px solid #fff;
+}
+/* .carousel_options input {
+  display:inline;
+}*/
+.ad-cat_title,
+.ad-cat_elements {
+  display:block;
+  float:left;
+}
+.ad-cat_title {
+ /* padding-right:10px; */
+  width:90px;
+  background:#000;
+  color:#fff;
+  margin:5px 0;
+  padding:0 5px;
+}
+.ad-cat_elements {
+  width:570px;
+  padding:1px 0 3px 10px;
+}
+/* .carousel_options label {
+  padding-left:3px;
+  padding-right:13px;
+} */
+.ad-submit_wrapper {
+  clear:both;
+  padding-top:12px;
+  height:auto;
+  border-top:2px solid #fff;
+}
+/*.ad-even,
+.ad-odd {
+  padding:2px 5px;
+}*/
+.ad-odd {
+  background:#fff;
+}
+.ad-even {
+  background:#ddd;
+}

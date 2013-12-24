@@ -1,0 +1,53 @@
+<f:layout name="Default" />
+
+jQuery FlexSlider 2 example. You need the FlexSlider 2 plugin from here for this example:
+http://flexslider.woothemes.com/thumbnail-slider.html
+Extract the zip file and copy it to your fileadmin-folder!
+Include the CSS- and JS-file with TypoScript from your fileadmin-folder and remove that 2 lines from here.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="http://flexslider.woothemes.com/css/flexslider.css" rel="stylesheet" />
+<script src="http://flexslider.woothemes.com/js/jquery.flexslider.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+var thumbwidth = {settings.img.thumbWidth};
+/*<![CDATA[*/
+$(window).load(function() {
+	  // The slider being synced must be initialized first
+	  $('#carousel').flexslider({
+	    animation: "slide",
+	    controlNav: false,
+	    animationLoop: false,
+	    slideshow: false,
+	    itemWidth: thumbwidth,
+	    itemMargin: 5,
+	    asNavFor: '#slider'
+	  });
+	   
+	  $('#slider').flexslider({
+	    animation: "slide",
+	    controlNav: false,
+	    animationLoop: false,
+	    slideshow: false,
+	    sync: "#carousel"
+	  });
+});
+/*]]>*/
+</script>
+
+<div id="slider" class="flexslider">
+  <ul class="slides">
+	<f:for each="{contents}" as="content">
+		<li><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" /></li>
+	</f:for>
+  </ul>
+</div>
+<div id="carousel" class="flexslider">
+  <ul class="slides">
+	<f:for each="{contents}" as="content">
+		<li><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="210" /></li>
+	</f:for>
+  </ul>
+</div>
+</f:section>

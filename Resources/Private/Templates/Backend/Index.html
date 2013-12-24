@@ -1,0 +1,9 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+ <h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:index.title" /></h1>
+ <p>{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:index.elements')}</p>
+ <f:be.tableList tableName="tx_camaliga_domain_model_content" 
+	 fieldList="{0: 'title', 1: 'shortdesc'}" storagePid="{pid}" levels="0" sortField="title" 
+	 readOnly="true" enableClickMenu="true" clickTitleMode="info" alternateBackgroundColors="true" />
+</f:section>

@@ -1,0 +1,52 @@
+<f:layout name="Default" />
+
+Generated Template.
+
+<f:section name="main">
+<f:flashMessages />
+<div id="carousel_container">
+  <div id="left_scroll"><a href="javascript:slide('left');">&nbsp;</a></div>
+  <div id="carousel_inner">
+
+<table  class="tx_camaliga" >
+	<tr>
+		<th><f:translate key="tx_camaliga_domain_model_content.title" /></th>
+		<th><f:translate key="tx_camaliga_domain_model_content.shortdesc" /></th>
+		<th><f:translate key="tx_camaliga_domain_model_content.longdesc" /></th>
+		<th><f:translate key="tx_camaliga_domain_model_content.link" /></th>
+		<th><f:translate key="tx_camaliga_domain_model_content.image" /></th>
+		<th><f:translate key="tx_camaliga_domain_model_content.latitude" /></th>
+		<th><f:translate key="tx_camaliga_domain_model_content.longitude" /></th>
+		<th> </th>
+		<th> </th>
+	</tr>
+    
+	<f:for each="{contents}" as="content">
+	<tr>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.title}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.shortdesc}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.longdesc}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.link}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.image}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.latitude}</f:link.action></td>
+		<td><f:link.action action="show" arguments="{content : content}"> {content.longitude}</f:link.action></td>
+		<td><f:link.action action="edit" arguments="{content : content}">Edit</f:link.action></td>
+		<td><f:link.action action="delete" arguments="{content : content}">Delete</f:link.action></td>
+	</tr>
+	</f:for>
+	
+</table>
+  </div>
+
+  <div id="right_scroll"><a href="javascript:slide('right');"><img src="{f:uri.resource(path:'Icons/hori_large.png')}" alt="next" title="next" /></a></div>
+  <input type="hidden" id="hidden_auto_slide_seconds" value="0" />
+</div>
+
+</f:section>
+
+
+
+<link href="{f:uri.resource(path:'css/Carousel.css')}" rel="stylesheet" />
+<script src="{f:uri.resource(path:'JavaScript/Carousel.js')}" type="text/javascript"></script>
+{catitem.parentTitle} : {catitem.title}.
+			<f:debug>{content}</f:debug>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="title">
+				<target>Flexform-Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="template">
+				<target>HTML-Template:</target>
+			</trans-unit>
+			<trans-unit id="template.carousel">
+				<target>Karussell: Elemente nebeneinander</target>
+			</trans-unit>
+			<trans-unit id="template.separated">
+				<target>Karussell: Text und Bild getrennt voneinander</target>
+			</trans-unit>
+			<trans-unit id="template.list">
+				<target>Liste: alle Elemente sind untereinander</target>
+			</trans-unit>
+			<trans-unit id="template.listExtended">
+				<target>Erweiterte Liste (mit Kategorien und Suche)</target>
+			</trans-unit>
+			<trans-unit id="template.show">
+				<target>Einzelansicht eines Elements (inkl. der Kategorien)</target>
+			</trans-unit>
+			<trans-unit id="template.showExtended">
+				<target>Erweiterte Einzelansicht (mit Kategorien und verwandten Elementen)</target>
+			</trans-unit>
+			<trans-unit id="template.random">
+				<target>Nur ein zufälliges Element anzeigen (ungecached)</target>
+			</trans-unit>
+			<trans-unit id="sortBy">
+				<target>Standard-Sortierung nach:</target>
+			</trans-unit>
+			<trans-unit id="sortBy.tstamp">
+				<target>Datum</target>
+			</trans-unit>
+			<trans-unit id="sortBy.title">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="sortBy.zip">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="sortBy.city">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="sortBy.country">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="sortOrder">
+				<target>Standard-Sortier-Reihenfolge:</target>
+			</trans-unit>
+			<trans-unit id="sortOrder.asc">
+				<target>Aufsteigend</target>
+			</trans-unit>
+			<trans-unit id="sortOrder.desc">
+				<target>Absteigend</target>
+			</trans-unit>
+			<trans-unit id="random">
+				<target>Ergebnisse zufällig sortieren (gecached)?</target>
+			</trans-unit>
+			<trans-unit id="onlyDistinct">
+				<target>Zeige nur einmalige Elemente an (Mutter oder ein Kind)?</target>
+			</trans-unit>
+			<trans-unit id="yes">
+				<target>ja</target>
+			</trans-unit>
+			<trans-unit id="nein">
+				<target>nein</target>
+			</trans-unit>
+			
+			<trans-unit id="mlang_tabs_tab">
+				<target>Camaliga</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr">
+				<target>Übersicht und Import "carousel/map/list/gallery"</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tablabel">
+				<target>Camaliga-Übersicht und Import</target>
+			</trans-unit>
+			
+			<trans-unit id="index.title">
+				<target>Übersicht</target>
+			</trans-unit>
+			<trans-unit id="index.elements">
+				<target>Camaliga-Elemente in diesem Ordner/Dokument:</target>
+			</trans-unit>
+			<trans-unit id="import.title">
+				<target>Karussell-Import</target>
+			</trans-unit>
+			<trans-unit id="import.importDel">
+				<target>Importiere diese Einträge und lösche die alten Einträge</target>
+			</trans-unit>
+			<trans-unit id="import.import">
+				<target>Importiere diese Einträge</target>
+			</trans-unit>
+			<trans-unit id="import.ok">
+				<target>OK, die Elemente wurden importiert!</target>
+			</trans-unit>
+			<trans-unit id="import.del">
+				<target>OK, die alten Elemente wurden gelöscht!</target>
+			</trans-unit>
+			<trans-unit id="import.error">
+				<target>Fehler: keine Einträge gefunden!</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.title">
+				<target>PicasaWeb-Import</target>
+			</trans-unit>
+			<trans-unit id="importNews.title">
+				<target>tt_news-Import</target>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

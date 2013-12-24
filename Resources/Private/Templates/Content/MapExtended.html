@@ -1,0 +1,85 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Extended.css')}" rel="stylesheet" />
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+<div id="map_canvas" style="width:700px; height:700px;"></div>
+<script type="text/javascript">
+  var map;
+  var bounds;
+  function initializeGM() {
+    var latlng = new google.maps.LatLng(50.0,10.0);
+    var myOptions = {
+      zoom: 5,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	bounds = new google.maps.LatLngBounds();
+  }
+  function addToGM(koord1,koord2,title,content,bildtag,nr_all) {
+	var myLatlng = new google.maps.LatLng(koord1,koord2);
+	var contentString = '<div style="float:left;width:110px;">'+bildtag+'</div><div style="float:left;width:300px;"><div><b>'+title+'</b></div><p>'+content+'<br />Latitude: '+koord1+'<br />Longitude: '+koord2+'</p></div>';
+
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+
+	var marker = new google.maps.Marker({
+		position: myLatlng,
+		map: map,
+		title: title
+	});
+	bounds.extend(marker.getPosition());
+
+	google.maps.event.addListener(marker, 'click', function() {
+	  infowindow.open(map,marker);
+	});
+  }
+//  $(document).ready(function() {
+	initializeGM();
+//  });
+	<f:for each="{contents}" as="content" iteration="iter">
+  addToGM({content.latitude},{content.longitude},'{content.title}','{content.shortdesc}','<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />',{iter.cycle});
+	</f:for>
+	map.fitBounds(bounds);
+</script>
+<div style="clear: both; height: 5px;">&nbsp;</div>
+
+<f:form action="mapExtended" name="extbasecar">
+<div class="carousel_options">
+	<div><b>Optionen</b></div>
+	<f:for each="{categories}" as="catitemVal" key="catitemKey">
+	  <f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+		<div class="ad-cat_item ad-{zebraClass}"><div class="ad-cat_title">{catitemVal.title}: </div><div class="ad-cat_elements">
+		<f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
+			<label for="cat{catitemKey}_0" class="radio inline">
+				<f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
+				egal
+			</label>
+		</f:if>
+		<f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
+			<f:if condition="{0:catitemVal.description} == {0:'checkbox'}">
+				<f:then>
+					<label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox inline">
+					<f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
+				</f:then>
+				<f:else>
+					<label for="cat{catitemKey}_{catitemKeyChild}" class="radio inline">
+					<f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
+				</f:else>
+			</f:if>
+			{catitemValChild.title}</label>
+		</f:for>
+		</div></div>
+	  </f:cycle>
+	</f:for>
+	<div class="ad-submit_wrapper">
+	<f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="submit" />
+	<input type="hidden" name="no_cache" value="1" />
+	</div><div class="clearer"> </div>
+</div>
+</f:form>
+</f:section>

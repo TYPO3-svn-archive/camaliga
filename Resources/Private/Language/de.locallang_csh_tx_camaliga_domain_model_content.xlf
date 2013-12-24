@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="title.description">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="shortdesc.description">
+				<target>Kurze Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="longdesc.description">
+				<target>Lange Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="link.description">
+				<target>Link zu einer Seite</target>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<target>Bild</target>
+			</trans-unit>
+			<trans-unit id="street.description">
+				<target>Straße</target>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="latitude.description">
+				<target>Latitude</target>
+			</trans-unit>
+			<trans-unit id="longitude.description">
+				<target>Longitude</target>
+			</trans-unit>
+			<trans-unit id="custom1.description">
+				<target>Eigenes Feld 1</target>
+			</trans-unit>
+			<trans-unit id="custom2.description">
+				<target>Eigenes Feld 2</target>
+			</trans-unit>
+			<trans-unit id="custom3.description">
+				<target>Eigenes Feld 3</target>
+			</trans-unit>
+			<trans-unit id="mother.description">
+				<target>Übergeordnetes Element von diesem Element</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

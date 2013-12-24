@@ -1,0 +1,27 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+ <h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importNews.title" /></h1>
+ <f:flashMessages renderMode="div" />
+ 
+ <f:if condition="{error} == 1">
+ <f:then>
+  <h3><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:import.error" /></h3>
+ </f:then>
+ <f:else>
+  <f:form action="importNews">
+  <table border="1">
+  <tr><th>UID</th><th>title</th><th>short</th><th>link</th><th>image</th></tr>
+  <f:for each="{entries}" as="entry">
+   <tr><td>{entry.uid}</td><td>{entry.title}</td><td>{entry.short}</td><td>{entry.link}</td><td>{entry.image}</td></tr>
+  </f:for>
+  </table>
+  <br />
+  <f:form.submit name="cimport" value="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:import.import', default: 'Import')}" />
+  &nbsp;
+  <f:form.submit name="dimport" value="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:import.importDel', default: 'Import and del')}" />
+  </f:form>
+ </f:else>
+ </f:if>
+ 
+</f:section>

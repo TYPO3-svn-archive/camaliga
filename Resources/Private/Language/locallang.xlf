@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_camaliga_domain_model_content">
+				<source>Carousel/gallery/map element</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.shortdesc">
+				<source>Short description</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longdesc">
+				<source>Long description</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.link">
+				<source>Link to a page</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.zip">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.latitude">
+				<source>Latitude</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longitude">
+				<source>Longitude</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom1">
+				<source>Custom variable 1</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom2">
+				<source>Custom variable 2</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom3">
+				<source>Custom variable 3</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mother">
+				<source>Parent element of this element</source>
+			</trans-unit>
+			
+			<trans-unit id="search">
+				<source>search</source>
+			</trans-unit>
+			<trans-unit id="nothing">
+				<source>0 entries found.</source>
+			</trans-unit>
+			<trans-unit id="more">
+				<source>Furthermore informations</source>
+			</trans-unit>
+			<trans-unit id="address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="back">
+				<source>Go back</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

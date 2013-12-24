@@ -1,0 +1,90 @@
+<f:layout name="Default" />
+
+This template is a gallery that requires jQuery + jQuery Timers + jQuery UI Effects Easing and GalleryView from here:
+http://spaceforaname.com/galleryview/
+Note 1: copy the GalleryView-files into your fileadmin-folder and include them via TypoScript!
+  Remove that 2 things from this template after doing that...
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Extended.css')}" rel="stylesheet" />
+<link href="http://spaceforaname.com/galleryview/galleryview/css/jquery.galleryview-3.0-dev.css" rel="stylesheet" />
+<script src="http://spaceforaname.com/galleryview/galleryview/js/jquery.galleryview-3.0-dev.js" type="text/javascript"></script>
+
+<f:form action="galleryviewExtended" name="extbasecar">
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<script type="text/javascript">
+var start = {start};
+var imgwidth = {settings.img.width};
+var imgheight = {settings.img.height};
+var thumbwidth = {settings.img.thumbWidth};
+var thumbheight = {settings.img.thumbHeight};
+jQuery(document).ready(function() {
+  $('#myGallery').galleryView({
+	transition_speed: 1100,
+	enable_overlays: true,
+	panel_width: imgwidth,
+	panel_height: imgheight,
+	panel_scale: 'fit',
+	start_frame: start,
+	autoplay: false,
+	show_filmstrip_nav: false,
+	show_captions: false,
+	filmstrip_style: 'showall',
+	frame_width: thumbwidth,
+	frame_height: thumbheight,
+	infobar_opacity: 0.75,
+	easing: 'swing'
+  });
+});
+</script>
+
+<ul id="myGallery">
+<f:for each="{contents}" as="content">
+<li><img src="/uploads/tx_camaliga/{content.image}" title="{content.title}" data-description="{content.shortdesc}" /></li>
+</f:for>
+</ul>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+
+<div class="carousel_options">
+	Sort by:
+	<f:form.select name="sortBy" options="{sorting: 'Standard', title: 'Title', city: 'City'}" value="{sortBy_selected}" />
+	Sort order:
+	<f:form.select name="sortOrder" options="{asc: 'ascending', desc: 'descending'}" value="{sortOrder_selected}" />
+	<br />
+  <f:for each="{categories}" as="catitemVal" key="catitemKey">
+    {catitemVal.title}:
+    <f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
+      <label for="cat{catitemKey}_0" class="radio inline">
+        <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
+        every &nbsp;
+      </label>
+    </f:if>
+    <f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
+      <f:if condition="{0:catitemVal.description} == {0:'checkbox'}">
+        <f:then>
+          <label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox inline">
+          <f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
+        </f:then>
+        <f:else>
+          <label for="cat{catitemKey}_{catitemKeyChild}" class="radio inline">
+          <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
+        </f:else>
+      </f:if>
+      {catitemValChild.title}</label>
+    </f:for>
+    <br />
+  </f:for>
+	<f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" />
+	<input type="hidden" name="no_cache" value="1" />
+</div>
+</f:form>
+</f:section>

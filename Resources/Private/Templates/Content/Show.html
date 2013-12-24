@@ -1,0 +1,40 @@
+<f:layout name="Default" />
+
+This example shows one selected element.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Single.css')}" rel="stylesheet" />
+
+<f:if condition="{error} == 1">
+<f:then>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:then>
+<f:else>
+ <table class="carousel-single">
+  <tr>
+   <td class="carousel-single-img">
+	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+   </td>
+   <td class="carousel-single-text">
+	<div>{content.title}</div>
+	<div><em>{content.shortdesc}</em></div>
+	<f:format.html>{content.longdesc}</f:format.html>
+	<f:if condition="{0:content.street} != {0:''}"><div>{f:translate(key: 'address', default: 'address')}: {content.street}, {content.zip} {content.city}, {content.country}.</div></f:if>
+	<div>
+		<f:if condition="{0:content.custom1} != {0:''}">Custom 1: {content.custom1}.</f:if>
+		<f:if condition="{0:content.custom2} != {0:''}">Custom 2: {content.custom2}.</f:if>
+		<f:if condition="{0:content.custom3} != {0:''}">Custom 3: {content.custom3}.</f:if>
+	</div>
+	<f:if condition="{0:content.link} != {0:''}"><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></f:if>
+	<f:for each="{content.categories}" as="catMMval" key="catMMkey">
+		{catMMval.title}:
+		<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
+			<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>
+	</f:for>
+   </td>
+  </tr>
+ </table>
+</f:else>
+</f:if>
+</f:section>

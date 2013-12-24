@@ -1,0 +1,54 @@
+<f:layout name="Default" />
+
+This template is a gallery that requires jQuery + jQuery Timers + jQuery UI Effects Easing and GalleryView from here:
+http://spaceforaname.com/galleryview/
+Note 1: copy the GalleryView-files into your fileadmin-folder and include them via TypoScript!
+  Remove that 2 things from this template after doing that...
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="http://spaceforaname.com/galleryview/galleryview/css/jquery.galleryview-3.0-dev.css" rel="stylesheet" />
+<script src="http://spaceforaname.com/galleryview/galleryview/js/jquery.galleryview-3.0-dev.js" type="text/javascript"></script>
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<script type="text/javascript">
+var start = 1;
+var imgwidth = {settings.img.width};
+var imgheight = {settings.img.height};
+var thumbwidth = {settings.img.thumbWidth};
+var thumbheight = {settings.img.thumbHeight};
+jQuery(document).ready(function() {
+  $('#myGallery').galleryView({
+	transition_speed: 1100,
+	enable_overlays: true,
+	panel_width: imgwidth,
+	panel_height: imgheight,
+	panel_scale: 'fit',
+	start_frame: start,
+	autoplay: false,
+	show_filmstrip_nav: false,
+	show_captions: false,
+	filmstrip_style: 'showall',
+	frame_width: thumbwidth,
+	frame_height: thumbheight,
+	infobar_opacity: 0.75,
+	easing: 'swing'
+  });
+});
+</script>
+
+<ul id="myGallery">
+<f:for each="{contents}" as="content">
+<li><img src="/uploads/tx_camaliga/{content.image}" title="{content.title}" data-description="{content.shortdesc}" /></li>
+</f:for>
+</ul>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

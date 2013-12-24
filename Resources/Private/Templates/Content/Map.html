@@ -1,0 +1,49 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<f:flashMessages />
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+<div id="map_canvas" style="width:700px; height:700px;"></div>
+<script type="text/javascript">
+  var map;
+  var bounds;
+  function initializeGM() {
+    var latlng = new google.maps.LatLng(50.15,9.45);
+    var myOptions = {
+      zoom: 5,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	bounds = new google.maps.LatLngBounds();
+  }
+  function addToGM(koord1,koord2,title,content,bildtag,nr_all) {
+	var myLatlng = new google.maps.LatLng(koord1,koord2);
+	var contentString = '<div style="float:left;width:110px;">'+bildtag+'</div><div style="float:left;width:300px;"><div><b>'+title+'</b></div><p>'+content+'<br />Latitude: '+koord1+'<br />Longitude: '+koord2+'</p></div>';
+
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+
+	var marker = new google.maps.Marker({
+		position: myLatlng,
+		map: map,
+		title: title
+	});
+	bounds.extend(marker.getPosition());
+
+	google.maps.event.addListener(marker, 'click', function() {
+	  infowindow.open(map,marker);
+	});
+  }
+//  $(document).ready(function() {
+	initializeGM();
+//  });
+	<f:for each="{contents}" as="content" iteration="iter">
+  addToGM({content.latitude},{content.longitude},'{content.title}','{content.shortdesc}','<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />',{iter.cycle});
+	</f:for>
+	map.fitBounds(bounds);
+</script>
+<div style="clear: both; height: 5px;">&nbsp;</div>
+</f:section>

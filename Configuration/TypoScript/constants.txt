@@ -1,0 +1,14 @@
+plugin.tx_camaliga {
+	view {
+		# cat=plugin.tx_camaliga/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:extbase_carousel/Resources/Private/Templates/
+		# cat=plugin.tx_camaliga/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:extbase_carousel/Resources/Private/Partials/
+		# cat=plugin.tx_camaliga/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:extbase_carousel/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_camaliga//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

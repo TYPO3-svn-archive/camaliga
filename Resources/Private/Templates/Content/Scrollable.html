@@ -1,0 +1,106 @@
+<f:layout name="Default" />
+
+This template is a carousel that requires jQuery + jQuery TOOLS Scrollable.
+Note: this example requires n*x elements. x is in this example 5. You can change this value at line 30 and 32.
+ 
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Scrollable.css')}" rel="stylesheet" />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<h3 id="jtitle_wrap">&nbsp;</h3>
+<div id="jdescription_wrap">&nbsp;</div>
+
+<!-- wrapper element for the large image -->
+<div id="jimage_wrap">
+  <!-- Initially the image is a simple 1x1 pixel transparent GIF -->
+  <img src="/clear.gif" />
+</div>
+
+<div id="jscrollable_wrap">
+<!-- "previous page" action -->
+<a class="prev browse left"></a>
+ 
+<!-- root element for scrollable -->
+<div class="scrollable" id="scrollable">
+  <!-- root element for the items -->
+  <div class="items">
+   <f:for each="{contents}" as="content" iteration="iter">
+	<f:if condition="{iter.index} % 5"><f:then></f:then><f:else><div></f:else></f:if>
+	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}m" />
+	<f:if condition="{iter.cycle} % 5"><f:then></f:then><f:else></div></f:else></f:if>
+   </f:for>
+  </div>
+</div>
+ 
+<!-- "next page" action -->
+<a class="next browse right"></a>
+</div>
+
+<script type="text/javascript">
+var mycarousel_itemList = new Array({contents -> f:count()});
+<f:for each="{contents}" as="content" iteration="iter">
+mycarousel_itemList[{iter.index}] = new Array(4);
+mycarousel_itemList[{iter.index}]['title'] = '{content.title}';
+mycarousel_itemList[{iter.index}]['content'] = '{content.shortdesc}';
+mycarousel_itemList[{iter.index}]['link'] = '{content.link}';
+mycarousel_itemList[{iter.index}]['image'] = '/uploads/tx_camaliga/{content.image}';
+</f:for>
+
+/*<![CDATA[*/
+$(function() {
+  // initialize scrollable
+  $(".scrollable").scrollable();
+  $(".items img").click(function() {
+		// see if same thumb is being clicked
+		if ($(this).hasClass("active")) { return; }
+	 
+		// calclulate large image's URL based on the thumbnail URL (flickr specific)
+		var url = $(this).attr("src");
+	 
+		// find current image position
+		var position = 0;
+		$(this).parent().parent().children('div').children('img').each(function (index, domEle) {
+			  if ($(domEle).attr('src') == url) position=index;
+		});
+		var element = mycarousel_itemList[position];
+		$('#jtitle_wrap').text(element['title']);
+		var description = element['content'];
+		if (description=='') description='&nbsp;';
+		$('#jdescription_wrap').html(description);
+		url = element['image'];
+		
+		// get handle to element that wraps the image and make it semi-transparent
+		var wrap = $("#jimage_wrap").fadeTo("medium", 0.5);
+	 
+		// the large image from www.flickr.com
+		var img = new Image();
+	 
+		// call this function after it's loaded
+		img.onload = function() {
+			// make wrapper fully visible
+			wrap.fadeTo("fast", 1);
+	 
+			// change the image
+			wrap.find("img").attr("src", url);
+		};
+	 
+		// begin loading the image
+		img.src = url;
+	 
+		// activate item
+		$(".items img").removeClass("active");
+		$(this).addClass("active");
+	 
+	// when page loads simulate a "click" on the first image
+	}).filter(":first").click();
+});
+/*]]>*/
+</script>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

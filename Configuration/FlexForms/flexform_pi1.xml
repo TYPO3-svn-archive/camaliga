@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:title</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <switchableControllerActions>
+          <TCEforms>
+          <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template</label>
+          <config>
+          <type>select</type>
+          <items>
+            <numIndex index="0">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.carousel</numIndex>
+                <numIndex index="1">Content->carousel</numIndex>
+            </numIndex>
+            <numIndex index="1">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.separated</numIndex>
+                <numIndex index="1">Content->carouselSeparated</numIndex>
+            </numIndex>
+            <numIndex index="2">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
+                <numIndex index="1">Content->list;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="3">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.listExtended</numIndex>
+                <numIndex index="1">Content->listExtended;Content->showExtended</numIndex>
+            </numIndex>
+            <numIndex index="4">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.show</numIndex>
+                <numIndex index="1">Content->show</numIndex>
+            </numIndex>
+            <numIndex index="5">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.showExtended</numIndex>
+                <numIndex index="1">Content->showExtended</numIndex>
+            </numIndex>
+            <numIndex index="9">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.random</numIndex>
+                <numIndex index="1">Content->random</numIndex>
+            </numIndex>
+            <numIndex index="10">
+                <numIndex index="0">jQuery TOOLS Scrollable</numIndex>
+                <numIndex index="1">Content->scrollable</numIndex>
+            </numIndex>
+            <numIndex index="12">
+                <numIndex index="0">Roundabout</numIndex>
+                <numIndex index="1">Content->roundabout</numIndex>
+            </numIndex>
+            <numIndex index="14">
+                <numIndex index="0">GalleryView</numIndex>
+                <numIndex index="1">Content->galleryview</numIndex>
+            </numIndex>
+            <numIndex index="15">
+                <numIndex index="0">GalleryView, extended</numIndex>
+                <numIndex index="1">Content->galleryviewExtended</numIndex>
+            </numIndex>
+            <numIndex index="16">
+                <numIndex index="0">GalleryView + FancyBox</numIndex>
+                <numIndex index="1">Content->galleryviewFancyBox</numIndex>
+            </numIndex>
+            <numIndex index="18">
+                <numIndex index="0">AD Gallery</numIndex>
+                <numIndex index="1">Content->adGallery</numIndex>
+            </numIndex>
+            <numIndex index="19">
+                <numIndex index="0">AD Gallery, extended</numIndex>
+                <numIndex index="1">Content->adGalleryExtended</numIndex>
+            </numIndex>
+            <numIndex index="20">
+                <numIndex index="0">Bootstrap Carousel</numIndex>
+                <numIndex index="1">Content->bootstrap</numIndex>
+            </numIndex>
+            <numIndex index="22">
+                <numIndex index="0">Flexslider 2</numIndex>
+                <numIndex index="1">Content->flexslider2</numIndex>
+            </numIndex>
+            <numIndex index="24">
+                <numIndex index="0">Elastislide</numIndex>
+                <numIndex index="1">Content->elastislide</numIndex>
+            </numIndex>
+            <numIndex index="30">
+                <numIndex index="0">Google maps</numIndex>
+                <numIndex index="1">Content->map</numIndex>
+            </numIndex>
+            <numIndex index="31">
+                <numIndex index="0">Google maps, extended</numIndex>
+                <numIndex index="1">Content->mapExtended</numIndex>
+            </numIndex>
+            <numIndex index="99">
+                <numIndex index="0">Test</numIndex>
+                <numIndex index="1">Content->test;Content->show</numIndex>
+            </numIndex>
+            </items>
+          </config>
+          </TCEforms>
+          </switchableControllerActions>
+			<settings.sortBy>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">Sorting</numIndex>
+					      <numIndex index="1">sorting</numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.tstamp</numIndex>
+					      <numIndex index="1">tstamp</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.title</numIndex>
+					      <numIndex index="1">title</numIndex>
+					  </numIndex>
+					  <numIndex index="3">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.zip</numIndex>
+					      <numIndex index="1">zip</numIndex>
+					  </numIndex>
+					  <numIndex index="4">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.city</numIndex>
+					      <numIndex index="1">city</numIndex>
+					  </numIndex>
+					  <numIndex index="5">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.country</numIndex>
+					      <numIndex index="1">country</numIndex>
+					  </numIndex>
+					  <numIndex index="6">
+					      <numIndex index="0">Custom 1</numIndex>
+					      <numIndex index="1">custom1</numIndex>
+					  </numIndex>
+					  <numIndex index="7">
+					      <numIndex index="0">Custom 2</numIndex>
+					      <numIndex index="1">custom2</numIndex>
+					  </numIndex>
+					  <numIndex index="8">
+					      <numIndex index="0">Custom 3</numIndex>
+					      <numIndex index="1">custom3</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.sortBy>
+			<settings.sortOrder>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder.asc</numIndex>
+					      <numIndex index="1">asc</numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder.desc</numIndex>
+					      <numIndex index="1">desc</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.sortOrder>
+			<settings.random>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:random</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.random>
+			<settings.onlyDistinct>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:onlyDistinct</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.onlyDistinct>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

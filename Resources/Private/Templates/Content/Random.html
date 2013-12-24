@@ -1,0 +1,15 @@
+<f:layout name="Default" />
+
+This template shows a random element.
+
+<f:section name="main">
+<f:flashMessages />
+<f:for each="{contents}" as="content">
+  <div class="carousel-single">
+	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+	<div>{content.title}</div>
+	<div><em>{content.shortdesc}</em></div>
+	<f:format.html>{content.longdesc}</f:format.html>
+  </div>
+</f:for>
+</f:section>

@@ -62,6 +62,10 @@
                 <numIndex index="0">GalleryView + FancyBox</numIndex>
                 <numIndex index="1">Content->galleryviewFancyBox</numIndex>
             </numIndex>
+            <numIndex index="17">
+                <numIndex index="0">FancyBox</numIndex>
+                <numIndex index="1">Content->fancyBox</numIndex>
+            </numIndex>
             <numIndex index="18">
                 <numIndex index="0">AD Gallery</numIndex>
                 <numIndex index="1">Content->adGallery</numIndex>

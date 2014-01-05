@@ -373,6 +373,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
+	 * action FancyBox
+	 *
+	 * @return void
+	 */
+	public function fancyBoxAction() {
+		$this->listAction();
+	}
+	
+	/**
 	 * action Elastislide
 	 *
 	 * @return void

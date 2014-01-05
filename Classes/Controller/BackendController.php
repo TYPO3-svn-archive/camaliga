@@ -89,19 +89,9 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 						$insert['title'] = $entries[$i]['titel'];
 						$insert['shortdesc'] = $entries[$i]['meldung'];
 						$insert['link'] = $entries[$i]['link'];
-						$bild = $entries[$i]['bild'];
-						if (is_file(PATH_site . 'uploads/tx_camaliga/' . $bild)) {
-							// wenn das Bild schon da ist, den Dateinamen ändern!
-							for ($j=1;$j<100;$j++) {
-								if (!is_file(PATH_site.'uploads/tx_camaliga/' . $j . '_' . $bild)) {
-									$bild = $j . '_' . $bild;
-									break;
-								}
-							}
-						}
-						$insert['image'] = $bild;
+						$insert['image'] = $this->checkImage($entries[$i]['bild']);
 						$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $insert);
-						copy(PATH_site . 'uploads/tx_karussell/'.$entries[$i]['bild'], PATH_site . 'uploads/tx_camaliga/' . $bild);
+						copy(PATH_site . 'uploads/tx_karussell/'.$entries[$i]['bild'], PATH_site . 'uploads/tx_camaliga/' . $insert['image']);
 						if ($this->request->hasArgument('dimport'))
 							unlink(PATH_site . 'uploads/tx_karussell/'.$entries[$i]['bild']);
 					}
@@ -146,19 +136,9 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 						$insert['title'] = $entries[$i]['title'];
 						$insert['shortdesc'] = $entries[$i]['short'];
 						$insert['link'] = $entries[$i]['link'];
-						$bild = $entries[$i]['image'];
-						if (is_file(PATH_site . 'uploads/tx_camaliga/' . $bild)) {
-							// wenn das Bild schon da ist, den Dateinamen ändern!
-							for ($j=1;$j<100;$j++) {
-								if (!is_file(PATH_site . 'uploads/tx_camaliga/' . $j . '_' . $bild)) {
-									$bild = $j . '_' . $bild;
-									break;
-								}
-							}
-						}
-						$insert['image'] = $bild;
+						$insert['image'] = $this->checkImage($entries[$i]['image']);
 						$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $insert);
-						copy(PATH_site . 'uploads/pics/' . $entries[$i]['image'], PATH_site . 'uploads/tx_camaliga/' . $bild);
+						copy(PATH_site . 'uploads/pics/' . $entries[$i]['image'], PATH_site . 'uploads/tx_camaliga/' . $insert['image']);
 						if ($this->request->hasArgument('dimport'))
 							unlink(PATH_site.'uploads/pics/' . $entries[$i]['image']);
 					}
@@ -186,7 +166,123 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function importPicasaAction() {
 		$pid = intval($this->getCurrentPageId());
+		$importNr = $this->request->hasArgument('importNr') ? intval($this->request->getArgument('importNr')) : -1;
+		$start = $this->request->hasArgument('start') ? intval($this->request->getArgument('start')) : 1;
+		$max = $this->request->hasArgument('max') ? intval($this->request->getArgument('max')) : 25;
+		$userID = $this->request->hasArgument('userid') ? $this->request->getArgument('userid') : '';
+		$albumID = $this->request->hasArgument('albumid') ? $this->request->getArgument('albumid') : '';
+		$imgsize = $this->request->hasArgument('imgsize') ? $this->request->getArgument('imgsize') : '720';
 		
+		if ($userID && $albumID) {
+			$url = 'https://picasaweb.google.com/data/feed/api/user/' . $userID . '/albumid/' . $albumID . 
+				'?start-index=' . $start . '&max-results=' . $max . '&imgmax=110&thumbsize=104';
+			$ch=curl_init();
+			curl_setopt($ch,CURLOPT_URL,$url);
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+			$data=curl_exec($ch);
+			curl_close($ch);
+	
+		/*	$dom = new DOMDocument;
+			$dom->loadXML($data); // data from cURL request		
+			$xpath = new DOMXPath($dom);
+			$names = $xpath->query('//feed/entry');
+			foreach ($names as $name) {
+			    echo $name->nodeValue;
+			}*/
+			$xml = simplexml_load_string($data);
+			$json = json_encode($xml);
+			$array = json_decode($json,TRUE);
+	
+			// Import
+			$imported = FALSE;
+			$array2 = array();
+			$inserted = array();
+			$insert = array();
+			$insert['pid'] = $pid;
+			$insert['tstamp'] = time();
+			$insert['crdate'] = time();
+			$insert['cruser_id'] = $GLOBALS['BE_USER']->user['uid'];
+			
+			foreach ($array['entry'] as $i => $entry) {
+				$insert['sorting'] = $i+1;
+				$insert['title'] = ($entry['summary']) ? $entry['summary'] : $entry['title'];
+				$insert['image'] = $this->checkImage($entry['title']);
+				$insert['custom1'] = $entry['content']['@attributes']['src'];
+				$inserted[] = $insert;
+				
+				if (($i+1) == $importNr) {
+					// Hiermit erhalten wir ein großes Bild:
+					$url2 = $entry['id'] . '?imgmax=' . $imgsize;
+					$ch=curl_init();
+					curl_setopt($ch,CURLOPT_URL,$url2);
+					curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+					$data2=curl_exec($ch);
+					curl_close($ch);
+					
+					$xml2 = simplexml_load_string($data2);
+					$json2 = json_encode($xml2);
+					$array2 = json_decode($json2,TRUE);
+					if ($array2['content']['@attributes']['src'])
+						$insert['custom1'] = $array2['content']['@attributes']['src'];
+					
+					// copy image from the google server
+					ob_start();
+					$fp = fopen($insert['custom1'], "rb");
+					fpassthru($fp);
+					fclose($fp);
+					$file = ob_get_contents();
+					ob_end_clean();
+					$fp = fopen(PATH_site . 'uploads/tx_camaliga/' . $insert['image'], "wb+");
+					fwrite($fp, $file);
+					fclose($fp);
+					$insert['custom1'] = '';
+					$imported = $insert['image'];
+					
+					$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+						'MAX(sorting) AS sorting',
+						'tx_camaliga_domain_model_content',
+						'pid = ' . $pid);
+					$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
+					if ($rows>0) {
+						while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
+							$insert['sorting'] = $row['sorting'] + 10;
+						}
+						$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+					} else $insert['sorting'] = 10;
+					
+					// save the entry into the DB
+					$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $insert);
+				}
+			}
+		}
+		
+		$this->view->assign('start', $start);
+		$this->view->assign('max', $max);
+		$this->view->assign('imgsize', $imgsize);
+		$this->view->assign('userid', (string) $userID);
+		$this->view->assign('albumid', (string) $albumID);
+		$this->view->assign('imported', $imported);		
+		$this->view->assign('result', $inserted);
+		$this->view->assign('entries', $array['entry']);
+		$this->view->assign('importentry', $array2);
+	}
+	
+	/**
+	 * Prüft, ob ein Bild schon vorhanden ist
+	 *
+	 * @return string
+	 */
+	function checkImage($bild) {
+		if (is_file(PATH_site . 'uploads/tx_camaliga/' . $bild)) {
+			// wenn das Bild schon da ist, den Dateinamen ändern!
+			for ($j=1;$j<500;$j++) {
+				if (!is_file(PATH_site . 'uploads/tx_camaliga/' . $j . '_' . $bild)) {
+					$bild = $j . '_' . $bild;
+					break;
+				}
+			}
+		}
+		return $bild;
 	}
 }
 ?>

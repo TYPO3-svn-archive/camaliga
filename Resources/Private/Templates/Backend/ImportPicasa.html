@@ -3,6 +3,40 @@
 <f:section name="main">
  <h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.title" /></h1>
  <f:flashMessages />
- 
- UNDER CONSTRUCTION
+ <f:be.tableList tableName="tx_camaliga_domain_model_content" 
+	 fieldList="{0: 'title', 1: 'image'}" storagePid="{pid}" levels="0" sortField="title" 
+	 readOnly="true" enableClickMenu="true" clickTitleMode="info" alternateBackgroundColors="true" />
+
+ <f:form action="importPicasa" name="import">
+  <f:if condition="{imported}">
+    <div>{imported} {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.imported', default: 'imported')}</div>
+  </f:if>
+  <p>{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.click')}</p>
+  
+  <f:for each="{result}" as="entry">
+    <a href="javascript:document.import.elements['tx_camaliga_web_camaligaimports[importNr]'].value={entry.sorting};document.import.submit();"><img src="{entry.custom1}"
+       alt="{entry.title}; {entry.image}" title="{entry.title}; {entry.image}" /></a>
+  </f:for>
+  
+  <br /><br />
+  {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.userid', default: 'User ID')}: 
+  <f:form.textfield name="userid" value="{userid}" size="25" />
+  {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.albumid', default: 'Album ID')}: 
+  <f:form.textfield name="albumid" value="{albumid}" size="25" />
+  {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.start', default: 'Start')}: 
+  <f:form.textfield name="start" value="{start}" size="5" />
+  {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.max', default: 'Max')}: 
+  <f:form.textfield name="max" value="{max}" size="5" />
+  {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.imgsize', default: 'Img size')}: 
+  <f:form.textfield name="imgsize" value="{imgsize}" size="5" />
+  <f:form.hidden name="importNr" value="-1" id="import_nr" />
+  <br />
+  <f:form.submit name="set" value="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.set', default: 'Set')}" />
+ </f:form>
 </f:section>
+
+
+<f:debug>{importentry}</f:debug>
+<f:for each="{entries}" as="entry">
+  <f:debug>{entry}</f:debug>
+</f:for>

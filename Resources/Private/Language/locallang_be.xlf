@@ -111,6 +111,30 @@
 			<trans-unit id="importPicasa.title">
 				<source>PicasaWeb-Import</source>
 			</trans-unit>
+			<trans-unit id="importPicasa.click">
+				<source>Click on an image to import it:</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.start">
+				<source>Start with image no.</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.max">
+				<source>Maximum images</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.imgsize">
+				<source>Image size</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.userid">
+				<source>User ID</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.albumid">
+				<source>Album ID</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.set">
+				<source>Set this parameters</source>
+			</trans-unit>
+			<trans-unit id="importPicasa.imported">
+				<source>has been imported.</source>
+			</trans-unit>
 			
 		</body>
 	</file>

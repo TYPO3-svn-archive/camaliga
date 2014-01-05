@@ -1,0 +1,42 @@
+<f:layout name="Default" />
+
+This template is a gallery that requires jQuery FancyBox and jQuery FancyBox Buttons. 
+Download them and include them like this with TypoScript:
+page {
+  includeJS.fancybox = fileadmin/template/fancyBox/source/jquery.fancybox.pack.js
+  includeJS.fancybuttons = fileadmin/template/fancyBox/source/helpers/jquery.fancybox-buttons.js
+  includeCSS.fancybox = fileadmin/template/fancyBox/source/jquery.fancybox.css
+  includeCSS.fancybuttons = fileadmin/template/fancyBox/source/helpers/jquery.fancybox-buttons.css
+}
+
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<script type="text/javascript">
+/*<![CDATA[*/
+jQuery(document).ready(function() {
+  $("a.fancybox").fancybox({
+		prevEffect		: 'none',
+		nextEffect		: 'none',
+		closeBtn		: false,
+		helpers		: {
+			title	: { type : 'inside' },
+			buttons	: {}
+		}
+  });
+});
+/*]]>*/
+</script>
+<p>
+<f:for each="{contents}" as="content" iteration="iteration">
+<a href="/uploads/tx_camaliga/{content.image}" rel="fancybox{uid}" class="fancybox" title="{content.title}" id="bild{uid}{iteration.cycle}"><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="200" maxHeight="200" /></a>
+</f:for>
+</p>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

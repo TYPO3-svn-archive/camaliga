@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'quizpalme.' . $_EXTKEY,
 	'Pi1',
 	array(
-		'Content' => 'list, listExtended, show, showExtended, random, carousel, carouselSeparated, scrollable, roundabout, flexslider2, galleryview, galleryviewExtended, galleryviewFancyBox, elastislide, bootstrap, adGallery, adGalleryExtended, map, mapExtended',
+		'Content' => 'list, listExtended, show, showExtended, random, carousel, carouselSeparated, scrollable, roundabout, flexslider2, galleryview, galleryviewExtended, galleryviewFancyBox, fancyBox, elastislide, bootstrap, adGallery, adGalleryExtended, map, mapExtended',
 	),
 	// non-cacheable actions
 	array(

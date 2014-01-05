@@ -105,11 +105,35 @@
 			<trans-unit id="import.error">
 				<target>Fehler: keine Einträge gefunden!</target>
 			</trans-unit>
+			<trans-unit id="importNews.title">
+				<target>tt_news-Import</target>
+			</trans-unit>
 			<trans-unit id="importPicasa.title">
 				<target>PicasaWeb-Import</target>
 			</trans-unit>
-			<trans-unit id="importNews.title">
-				<target>tt_news-Import</target>
+			<trans-unit id="importPicasa.click">
+				<target>Klicke auf ein Bild, um es zu importieren:</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.start">
+				<target>Starte bei Bild Nr.</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.max">
+				<target>Maximale Bilder-Anzahl</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.imgsize">
+				<target>Bildgröße</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.userid">
+				<target>Benutzer-ID</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.albumid">
+				<target>Album-ID</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.set">
+				<target>Parameter setzen</target>
+			</trans-unit>
+			<trans-unit id="importPicasa.imported">
+				<target>wurde importiert.</target>
 			</trans-unit>
 			
 		</body>

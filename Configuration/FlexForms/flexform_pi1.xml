@@ -109,38 +109,42 @@
 					<type>select</type>
 					<items>
 					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1">0</numIndex>
+					  </numIndex>
+					  <numIndex index="1">
 					      <numIndex index="0">Sorting</numIndex>
 					      <numIndex index="1">sorting</numIndex>
 					  </numIndex>
-					  <numIndex index="1">
+					  <numIndex index="2">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.tstamp</numIndex>
 					      <numIndex index="1">tstamp</numIndex>
 					  </numIndex>
-					  <numIndex index="2">
+					  <numIndex index="3">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.title</numIndex>
 					      <numIndex index="1">title</numIndex>
 					  </numIndex>
-					  <numIndex index="3">
+					  <numIndex index="4">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.zip</numIndex>
 					      <numIndex index="1">zip</numIndex>
 					  </numIndex>
-					  <numIndex index="4">
+					  <numIndex index="5">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.city</numIndex>
 					      <numIndex index="1">city</numIndex>
 					  </numIndex>
-					  <numIndex index="5">
+					  <numIndex index="6">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.country</numIndex>
 					      <numIndex index="1">country</numIndex>
 					  </numIndex>
-					  <numIndex index="6">
+					  <numIndex index="7">
 					      <numIndex index="0">Custom 1</numIndex>
 					      <numIndex index="1">custom1</numIndex>
 					  </numIndex>
-					  <numIndex index="7">
+					  <numIndex index="8">
 					      <numIndex index="0">Custom 2</numIndex>
 					      <numIndex index="1">custom2</numIndex>
 					  </numIndex>
-					  <numIndex index="8">
+					  <numIndex index="9">
 					      <numIndex index="0">Custom 3</numIndex>
 					      <numIndex index="1">custom3</numIndex>
 					  </numIndex>
@@ -155,10 +159,14 @@
 					<type>select</type>
 					<items>
 					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1">0</numIndex>
+					  </numIndex>
+					  <numIndex index="1">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder.asc</numIndex>
 					      <numIndex index="1">asc</numIndex>
 					  </numIndex>
-					  <numIndex index="1">
+					  <numIndex index="2">
 					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder.desc</numIndex>
 					      <numIndex index="1">desc</numIndex>
 					  </numIndex>
@@ -196,8 +204,90 @@
 					</config>
 				</TCEforms>
 			</settings.onlyDistinct>
+			<settings.listId>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:listId</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.listId>
+			<settings.showId>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:showId</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.showId>
         </el>
       </ROOT>
     </sDEF>
+    <sIMG>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:images</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.img.width>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:width</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.width>
+			<settings.img.height>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:height</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.height>
+			<settings.img.thumbWidth>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumbWidth</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.thumbWidth>
+			<settings.img.thumbHeight>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumbHeight</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.thumbHeight>
+        </el>
+      </ROOT>
+    </sIMG>
   </sheets>
 </T3DataStructure>

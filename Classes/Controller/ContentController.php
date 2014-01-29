@@ -43,6 +43,52 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	protected $contentRepository;
 
 	/**
+	 * configurationManager
+	 * 
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
+	
+	/**
+	 * Injects the configuration manager, retrieves the plugin settings from it, 
+	 * merges / overrides the FlexForm settings with Typoscript settings if FlexForm setting is empty
+	 *
+	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+	 * @return void
+	 */
+	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
+		$this->configurationManager = $configurationManager;
+
+		/* $tsSettings = $this->configurationManager->getConfiguration(
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
+			'Camaliga',
+			'Pi1'
+		);*/
+		$tsSettings = $this->configurationManager->getConfiguration(
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+		);
+		$tsSettings = $tsSettings['plugin.']['tx_camaliga.']['settings.'];
+		$originalSettings = $this->configurationManager->getConfiguration(
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+		);
+		/* \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tsSettings);
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($originalSettings); */
+		
+		// start override
+		if (isset($tsSettings['overrideFlexformSettingsIfEmpty']) && $tsSettings['overrideFlexformSettingsIfEmpty']==1) {
+			// if flexform setting is empty and value is available in TS
+			foreach ($tsSettings as $key=>$value) {
+				if ($key == 'img.') continue;
+				if (!$originalSettings[$key] && isset($value)) $originalSettings[$key] = $value;
+			}
+			foreach ($tsSettings['img.'] as $key=>$value) {
+				if (!$originalSettings['img'][$key] && isset($value)) $originalSettings['img'][$key] = $value;
+			}
+		}
+		$this->settings = $originalSettings;
+	}
+    
+	/**
 	 * action list
 	 *
 	 * @return void

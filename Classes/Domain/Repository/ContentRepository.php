@@ -42,8 +42,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param	array	$pids		Storage PIDs
 	 */
 	public function findAll($sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array()) {
-		$order = ($sortOrder == 'asc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING :
-										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
+		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
+										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 		 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
 		 	//OK
@@ -71,8 +71,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @param	string	$sortOrder	Sort order
 	 */
 	public function findByUids($uids, $sortBy = 'sorting', $sortOrder = 'asc') {
-		$order = ($sortOrder == 'asc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING :
-										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
+		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
+										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 		 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
 		 	//OK

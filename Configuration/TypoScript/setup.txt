@@ -13,8 +13,6 @@ plugin.tx_camaliga {
 		rewrittenPropertyMapper = 1
 	}
 	settings {
-		defaultStoragePids =
-		defaultCatIDs =
 		listId =
 		showId =
 		sortBy =
@@ -27,6 +25,9 @@ plugin.tx_camaliga {
 		  thumbWidth = 95
 		  thumbHeight = 68
 		}
+		overrideFlexformSettingsIfEmpty = 1
+		defaultStoragePids =
+		defaultCatIDs =
 		debug = 0
 	}
 }

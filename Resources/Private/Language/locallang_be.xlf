@@ -3,9 +3,17 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
 		<header/>
 		<body>
-
 			<trans-unit id="title">
-				<source>Flexform settings</source>
+				<source>Layout</source>
+			</trans-unit>
+			<trans-unit id="pres">
+				<source>Presentation</source>
+			</trans-unit>
+			<trans-unit id="images">
+				<source>Images</source>
+			</trans-unit>
+			<trans-unit id="title">
+				<source>Layout</source>
 			</trans-unit>
 			<trans-unit id="template">
 				<source>HTML-Template:</source>
@@ -63,6 +71,24 @@
 			</trans-unit>
 			<trans-unit id="onlyDistinct">
 				<source>Show only distinct entries (parent or one child)?</source>
+			</trans-unit>
+			<trans-unit id="listId">
+				<source>Where is the list-page (you must add the setting {settings.listId} to the template)?</source>
+			</trans-unit>
+			<trans-unit id="showId">
+				<source>Where is the single-page (you must add the setting {settings.showId} to the template)?</source>
+			</trans-unit>
+			<trans-unit id="width">
+				<source>Width of images ({settings.img.width}):</source>
+			</trans-unit>
+			<trans-unit id="height">
+				<source>Height of images ({settings.img.height}):</source>
+			</trans-unit>
+			<trans-unit id="thumbWidth">
+				<source>Width of thumbnail images ({settings.img.thumbWidth}):</source>
+			</trans-unit>
+			<trans-unit id="thumbHeight">
+				<source>Height of thumbnail images ({settings.img.thumbHeight}):</source>
 			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
@@ -135,7 +161,6 @@
 			<trans-unit id="importPicasa.imported">
 				<source>has been imported.</source>
 			</trans-unit>
-			
 		</body>
 	</file>
 </xliff>

@@ -11,9 +11,8 @@ Note 2: you can copy and customise the camaliga/Resources/Public/css/Carousel.cs
 Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
   plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
   Copy this file in a subfolder named "Content" of this folder.
-Note 4: if you want to change the width of the elements, you need to change it in the CSS-file and here in this 2 lines:
-  f:image width="195m"
-  item_width: 215,
+Note 4: if you want to change the width of the elements, you need to change it in the CSS-file too. Edit the margin here too:
+  var item_width = {settings.img.thumbWidth} + 20;
   You must specify the item_width only if you use margin in the CSS-file!
 
 
@@ -21,7 +20,6 @@ Note 4: if you want to change the width of the elements, you need to change it i
 <f:flashMessages />
 <link href="{f:uri.resource(path:'css/Carousel.css')}" rel="stylesheet" />
 <script src="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" type="text/javascript"></script>
-
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
 <div id="carousel_container">
@@ -30,7 +28,7 @@ Note 4: if you want to change the width of the elements, you need to change it i
     <ul id="carousel_ul">
 	<f:for each="{contents}" as="content">
 		<li class="carousel_li">
-			<f:image src="/uploads/tx_camaliga/{content.image}" width="195m" alt="{content.title}" title="{content.title}" />
+			<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />
 			<h4>{content.title}</h4>
 			<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
 		</li>
@@ -42,6 +40,7 @@ Note 4: if you want to change the width of the elements, you need to change it i
 </div>
 <div style="clear:both;"><!-- --></div>
 <script>
+var item_width = {settings.img.thumbWidth} + 20;
 /*<![CDATA[*/
 $(window).load(function() {
   $('#carousel_ul').camaliga({
@@ -49,7 +48,7 @@ $(window).load(function() {
     hover_pause: 0,	// pause on hover?
 	auto_slide_seconds: 5000, // auto slide in milliseconds
 	infinite: 1,	// infinite carousel? Then you need at least n+2 elements!
-	item_width: 215,	// item width of the li-element. Only needed if li has a margin>0
+	item_width: item_width,	// item width of the li-element. Only needed if li has a margin>0
 	li_name: 'li.carousel_li',	// only needed, if you use ul,li in the element itself
 	left_scroll: '#left_scroll',	// only needed, if you want to change the arrow at the first element when infinite=0 (class camaliga_first will be added)
 	right_scroll: '#right_scroll'	// only needed, if you want to change the arrow at the last element when infinite=0 (class camaliga_last will be added)

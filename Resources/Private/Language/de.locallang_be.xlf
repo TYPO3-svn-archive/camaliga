@@ -5,7 +5,13 @@
 		<body>
 
 			<trans-unit id="title">
-				<target>Flexform-Einstellungen</target>
+				<target>Layout</target>
+			</trans-unit>
+			<trans-unit id="pres">
+				<target>Anzeige</target>
+			</trans-unit>
+			<trans-unit id="images">
+				<target>Bilder</target>
 			</trans-unit>
 			<trans-unit id="template">
 				<target>HTML-Template:</target>
@@ -63,6 +69,24 @@
 			</trans-unit>
 			<trans-unit id="onlyDistinct">
 				<target>Zeige nur einmalige Elemente an (Mutter oder ein Kind)?</target>
+			</trans-unit>
+			<trans-unit id="listId">
+				<target>Wo ist die Listen-Seite (man muss die Variable {settings.listId} noch im Template hinzufügen)?</target>
+			</trans-unit>
+			<trans-unit id="showId">
+				<target>Wo ist die Einzelansicht-Seite (man muss die Variable {settings.showId} noch im Template hinzufügen)?</target>
+			</trans-unit>
+			<trans-unit id="width">
+				<target>Breite der Bilder ({settings.img.width}):</target>
+			</trans-unit>
+			<trans-unit id="height">
+				<target>Höhe der Bilder ({settings.img.height}):</target>
+			</trans-unit>
+			<trans-unit id="thumbWidth">
+				<target>Breite der kleinen Bilder ({settings.img.thumbWidth}):</target>
+			</trans-unit>
+			<trans-unit id="thumbHeight">
+				<target>Höhe der kleinen Bilder ({settings.img.thumbHeight}):</target>
 			</trans-unit>
 			<trans-unit id="yes">
 				<target>ja</target>

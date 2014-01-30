@@ -6,11 +6,11 @@
 			<trans-unit id="title">
 				<source>Layout</source>
 			</trans-unit>
-			<trans-unit id="pres">
-				<source>Presentation</source>
-			</trans-unit>
 			<trans-unit id="images">
 				<source>Images</source>
+			</trans-unit>
+			<trans-unit id="item">
+				<source>Items</source>
 			</trans-unit>
 			<trans-unit id="title">
 				<source>Layout</source>
@@ -38,6 +38,9 @@
 			</trans-unit>
 			<trans-unit id="template.random">
 				<source>Only one random element (uncached)</source>
+			</trans-unit>
+			<trans-unit id="template.responsive">
+				<source>A simple responsive carousel</source>
 			</trans-unit>
 			<trans-unit id="sortBy">
 				<source>Default sort by:</source>
@@ -78,17 +81,32 @@
 			<trans-unit id="showId">
 				<source>Where is the single-page (you must add the setting {settings.showId} to the template)?</source>
 			</trans-unit>
-			<trans-unit id="width">
-				<source>Width of images ({settings.img.width}):</source>
+			<trans-unit id="imgwidth">
+				<source>Width of images in px ({settings.img.width}):</source>
 			</trans-unit>
-			<trans-unit id="height">
-				<source>Height of images ({settings.img.height}):</source>
+			<trans-unit id="imgheight">
+				<source>Height of images in px ({settings.img.height}):</source>
 			</trans-unit>
 			<trans-unit id="thumbWidth">
-				<source>Width of thumbnail images ({settings.img.thumbWidth}):</source>
+				<source>Width of thumbnail images in px ({settings.img.thumbWidth}):</source>
 			</trans-unit>
 			<trans-unit id="thumbHeight">
-				<source>Height of thumbnail images ({settings.img.thumbHeight}):</source>
+				<source>Height of thumbnail images in px ({settings.img.thumbHeight}):</source>
+			</trans-unit>
+			<trans-unit id="width">
+				<source>Width in px ({settings.item.width}):</source>
+			</trans-unit>
+			<trans-unit id="height">
+				<source>Height in px ({settings.item.height}):</source>
+			</trans-unit>
+			<trans-unit id="padding">
+				<source>Padding in px ({settings.item.padding}):</source>
+			</trans-unit>
+			<trans-unit id="margin">
+				<source>Margin in px ({settings.item.margin}):</source>
+			</trans-unit>
+			<trans-unit id="items">
+				<source>Number of visible items ({settings.item.items}):</source>
 			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>

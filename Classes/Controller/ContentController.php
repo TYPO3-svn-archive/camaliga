@@ -78,11 +78,14 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		if (isset($tsSettings['overrideFlexformSettingsIfEmpty']) && $tsSettings['overrideFlexformSettingsIfEmpty']==1) {
 			// if flexform setting is empty and value is available in TS
 			foreach ($tsSettings as $key=>$value) {
-				if ($key == 'img.') continue;
+				if ($key == 'img.' || $key == 'item.') continue;
 				if (!$originalSettings[$key] && isset($value)) $originalSettings[$key] = $value;
 			}
 			foreach ($tsSettings['img.'] as $key=>$value) {
 				if (!$originalSettings['img'][$key] && isset($value)) $originalSettings['img'][$key] = $value;
+			}
+			foreach ($tsSettings['item.'] as $key=>$value) {
+				if (!$originalSettings['item'][$key] && isset($value)) $originalSettings['item'][$key] = $value;
 			}
 		}
 		$this->settings = $originalSettings;
@@ -113,6 +116,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('contents', $contents);
 		$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array
 		$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
+		$total_width = intval($this->settings['item']['items']) * (intval($this->settings['item']['width']) +
+			2 * intval($this->settings['item']['padding']) + 2 * intval($this->settings['item']['margin']));
+		$this->view->assign('totalWidth', $total_width);
 	}
 	
 	/**
@@ -293,6 +299,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
 		$this->view->assign('storagePIDsData', $storagePidsData);	// alle Daten zu den PIDS
 		$this->view->assign('start', $start);
+		$total_width = intval($this->settings['item']['items']) * (intval($this->settings['item']['width']) +
+			2 * intval($this->settings['item']['padding']) + 2 * intval($this->settings['item']['margin']));
+		$this->view->assign('totalWidth', $total_width);
 	}
 
 	/**
@@ -442,6 +451,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function flexslider2Action() {
+		$this->listAction();
+	}
+	
+	/**
+	 * action Responsive carousel
+	 *
+	 * @return void
+	 */
+	public function responsiveAction() {
 		$this->listAction();
 	}
 	

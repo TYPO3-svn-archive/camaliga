@@ -86,6 +86,10 @@
                 <numIndex index="0">Elastislide</numIndex>
                 <numIndex index="1">Content->elastislide</numIndex>
             </numIndex>
+            <numIndex index="28">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.responsive</numIndex>
+                <numIndex index="1">Content->responsive</numIndex>
+            </numIndex>
             <numIndex index="30">
                 <numIndex index="0">Google maps</numIndex>
                 <numIndex index="1">Content->map</numIndex>
@@ -244,7 +248,7 @@
     	  <el>
 			<settings.img.width>
               <TCEforms>
-                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:width</label>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:imgwidth</label>
                 <config>
                     <type>input</type>
                     <size>5</size>
@@ -255,7 +259,7 @@
 			</settings.img.width>
 			<settings.img.height>
               <TCEforms>
-                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:height</label>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:imgheight</label>
                 <config>
                     <type>input</type>
                     <size>5</size>
@@ -289,5 +293,70 @@
         </el>
       </ROOT>
     </sIMG>
+    <sITEM>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:item</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.item.width>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:width</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.width>
+			<settings.item.height>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:height</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.height>
+			<settings.item.padding>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:padding</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.padding>
+			<settings.item.margin>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:margin</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.margin>
+			<settings.item.items>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:items</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.items>
+        </el>
+      </ROOT>
+    </sITEM>
   </sheets>
 </T3DataStructure>

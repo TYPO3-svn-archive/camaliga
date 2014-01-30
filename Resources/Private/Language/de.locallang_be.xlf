@@ -7,11 +7,11 @@
 			<trans-unit id="title">
 				<target>Layout</target>
 			</trans-unit>
-			<trans-unit id="pres">
-				<target>Anzeige</target>
-			</trans-unit>
 			<trans-unit id="images">
 				<target>Bilder</target>
+			</trans-unit>
+			<trans-unit id="item">
+				<target>Elemente</target>
 			</trans-unit>
 			<trans-unit id="template">
 				<target>HTML-Template:</target>
@@ -36,6 +36,9 @@
 			</trans-unit>
 			<trans-unit id="template.random">
 				<target>Nur ein zufälliges Element anzeigen (ungecached)</target>
+			</trans-unit>
+			<trans-unit id="template.responsive">
+				<target>Einfaches responsives Karussell</target>
 			</trans-unit>
 			<trans-unit id="sortBy">
 				<target>Standard-Sortierung nach:</target>
@@ -76,17 +79,32 @@
 			<trans-unit id="showId">
 				<target>Wo ist die Einzelansicht-Seite (man muss die Variable {settings.showId} noch im Template hinzufügen)?</target>
 			</trans-unit>
-			<trans-unit id="width">
-				<target>Breite der Bilder ({settings.img.width}):</target>
+			<trans-unit id="imgwidth">
+				<target>Breite der Bilder in px ({settings.img.width}):</target>
 			</trans-unit>
-			<trans-unit id="height">
-				<target>Höhe der Bilder ({settings.img.height}):</target>
+			<trans-unit id="imgheight">
+				<target>Höhe der Bilder in px ({settings.img.height}):</target>
 			</trans-unit>
 			<trans-unit id="thumbWidth">
-				<target>Breite der kleinen Bilder ({settings.img.thumbWidth}):</target>
+				<target>Breite der kleinen Bilder in px ({settings.img.thumbWidth}):</target>
 			</trans-unit>
 			<trans-unit id="thumbHeight">
-				<target>Höhe der kleinen Bilder ({settings.img.thumbHeight}):</target>
+				<target>Höhe der kleinen Bilder in px ({settings.img.thumbHeight}):</target>
+			</trans-unit>
+			<trans-unit id="width">
+				<target>Breite in px ({settings.item.width}):</target>
+			</trans-unit>
+			<trans-unit id="height">
+				<target>Höhe in px ({settings.item.height}):</target>
+			</trans-unit>
+			<trans-unit id="padding">
+				<target>Padding in px ({settings.item.padding}):</target>
+			</trans-unit>
+			<trans-unit id="margin">
+				<target>Margin in px ({settings.item.margin}):</target>
+			</trans-unit>
+			<trans-unit id="items">
+				<target>Anzahl sichtbarer Elemente ({settings.item.items}):</target>
 			</trans-unit>
 			<trans-unit id="yes">
 				<target>ja</target>

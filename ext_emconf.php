@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Camaliga: Carousel/Map/List/Gallery',
-	'description' => 'A powerful and modern extbase carousel/gallery/map/list extension that can use the TYPO3 categories. You can use different jQuery-plugins.',
+	'description' => 'A powerful and modern extbase carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like FlexSlider or GalleryView.',
 	'category' => 'plugin',
 	'author' => 'Kurt Gusbeth',
 	'author_email' => 'info@quizpalme.de',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '0.1.5',
+	'version' => '0.1.6',
 	'constraints' => array(
 		'depends' => array(
 			'extbase' => '6.0',

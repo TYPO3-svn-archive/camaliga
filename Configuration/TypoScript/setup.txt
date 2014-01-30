@@ -25,6 +25,13 @@ plugin.tx_camaliga {
 		  thumbWidth = 95
 		  thumbHeight = 68
 		}
+		item {
+		  width = 195
+		  height = 290
+		  padding = 0
+		  margin = 10
+		  items = 3
+		}
 		overrideFlexformSettingsIfEmpty = 1
 		defaultStoragePids =
 		defaultCatIDs =

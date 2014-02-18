@@ -392,6 +392,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
+	 * action AD Gallery + FancyBox
+	 *
+	 * @return void
+	 */
+	public function adGalleryFancyBoxAction() {
+		$this->listAction();
+	}
+
+	/**
 	 * action AD Gallery extended
 	 *
 	 * @return void

@@ -6,7 +6,7 @@ This template shows a random element.
 <f:flashMessages />
 <f:for each="{contents}" as="content">
   <div class="carousel-single">
-	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="{settings.img.width}" />
 	<div>{content.title}</div>
 	<div><em>{content.shortdesc}</em></div>
 	<f:format.html>{content.longdesc}</f:format.html>

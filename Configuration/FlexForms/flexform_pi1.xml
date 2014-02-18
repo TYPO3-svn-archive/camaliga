@@ -75,8 +75,8 @@
                 <numIndex index="1">Content->adGalleryExtended</numIndex>
             </numIndex>
             <numIndex index="20">
-                <numIndex index="0">Bootstrap Carousel</numIndex>
-                <numIndex index="1">Content->bootstrap</numIndex>
+                <numIndex index="0">AD Gallery + FancyBox</numIndex>
+                <numIndex index="1">Content->adGalleryFancyBox</numIndex>
             </numIndex>
             <numIndex index="22">
                 <numIndex index="0">Flexslider 2</numIndex>
@@ -85,6 +85,10 @@
             <numIndex index="24">
                 <numIndex index="0">Elastislide</numIndex>
                 <numIndex index="1">Content->elastislide</numIndex>
+            </numIndex>
+            <numIndex index="26">
+                <numIndex index="0">Bootstrap Carousel</numIndex>
+                <numIndex index="1">Content->bootstrap</numIndex>
             </numIndex>
             <numIndex index="28">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.responsive</numIndex>

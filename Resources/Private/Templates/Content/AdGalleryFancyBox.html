@@ -1,0 +1,75 @@
+<f:layout name="Default" />
+
+This extended template is a gallery that requires jQuery + jQuery UI Easing and AD Gallery from here:
+http://adgallery.codeplex.com/documentation
+And the FancyBox-solution from here:
+  http://forum.jquery.com/topic/fancybox-in-ad-gallery
+You need jQuery FancyBox and jQuery FancyBox Buttons. Download them and include them like this with TypoScript:
+page {
+  includeJS.timers = fileadmin/template/GalleryView/js/jquery.timers-1.2.js
+  includeJS.fancybox = fileadmin/template/fancyBox/source/jquery.fancybox.pack.js
+  includeJS.fancybuttons = fileadmin/template/fancyBox/source/helpers/jquery.fancybox-buttons.js
+  includeCSS.fancybox = fileadmin/template/fancyBox/source/jquery.fancybox.css
+  includeCSS.fancybuttons = fileadmin/template/fancyBox/source/helpers/jquery.fancybox-buttons.css
+}
+  
+Note 1: copy the AD Gallery-files into your fileadmin-folder and include them via TypoScript!
+  Remove that 2 things from this template after doing that...
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+  
+<f:section name="main">
+<f:flashMessages />
+<link href="http://coffeescripter.com/code/ad-gallery/jquery.ad-gallery.css" rel="stylesheet" />
+<script src="http://coffeescripter.com/code/ad-gallery/jquery.ad-gallery.js" type="text/javascript"></script>
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+  <div class="ad-my-desc">
+  </div>
+    <div id="gallery" class="ad-gallery">
+      <div class="ad-image-wrapper">
+      </div>
+      <div class="ad-controls">
+      </div>
+      <div class="ad-nav">
+        <div class="ad-thumbs">
+          <ul class="ad-thumb-list">
+      <f:for each="{contents}" as="content" iteration="iteration">
+            <li>
+<a href="/uploads/tx_camaliga/{content.image}"><f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" class="image{iteration.cycle}" /></a>
+            </li>
+      </f:for>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="descriptions">
+    </div>
+    
+<script type="text/javascript">
+var galleries = $(".ad-gallery").adGallery();
+
+$(".ad-gallery").on("click", ".ad-image", function() {
+  $.fancybox({
+    href : $(this).find("img").attr("src"),
+    closeBtn: false,
+    closeClick : true,
+    openEffect : 'elastic',
+    openSpeed  : 150,
+    closeEffect : 'elastic',
+    closeSpeed  : 150,
+    helpers : {
+      overlay : null
+    }
+  });
+});
+</script>
+ 
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

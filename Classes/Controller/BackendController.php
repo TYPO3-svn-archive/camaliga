@@ -90,6 +90,9 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 						$insert['shortdesc'] = $entries[$i]['meldung'];
 						$insert['link'] = $entries[$i]['link'];
 						$insert['image'] = $this->checkImage($entries[$i]['bild']);
+						$insert['t3_origuid'] = $entries[$i]['t3_origuid'];
+						$insert['l10n_parent'] = $entries[$i]['l10n_parent'];
+						$insert['sys_language_uid'] = $entries[$i]['sys_language_uid'];
 						$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $insert);
 						copy(PATH_site . 'uploads/tx_karussell/'.$entries[$i]['bild'], PATH_site . 'uploads/tx_camaliga/' . $insert['image']);
 						if ($this->request->hasArgument('dimport'))

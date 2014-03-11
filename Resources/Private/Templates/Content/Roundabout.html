@@ -1,0 +1,90 @@
+<f:layout name="Default" />
+
+Roundabout-Example. First download Roundabout for jQuery from here:
+http://fredhq.com/projects/roundabout/
+Copy the file to your fileadmin-folder. Check the path to the file.
+Test it with this TS:
+page {
+  includeJS.RoundjsFile = fileadmin/template/scripts/jquery.roundabout.min.js
+}
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+ 
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Roundabout.css')}" rel="stylesheet" />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div class="roundabout-wrap">
+  <ul class="roundabout-holder">
+
+<f:for each="{contents}" as="content" iteration="iteration">
+<li class="roundabout-moveable-item" id="roundabout-{iteration.cycle}">
+	<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.width}m" alt="{content.title}" title="{content.title}" />
+	<div id="roundabout-{iteration.cycle}h" class="roundabout-hidden">
+		<h3>{content.title}</h3>
+		<div><f:format.html>{content.shortdesc}</f:format.html></div>
+		<f:if condition="{0:content.link} != {0:''}"><div style="padding-top:3px;"><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></div></f:if>
+	</div>
+</li>
+</f:for>
+
+  </ul>
+  <a href="#" onclick="this.blur();return false;" id="nextExp">&nbsp;</a>
+  <a href="#" onclick="this.blur();return false;" id="prevExp">&nbsp;</a>
+</div>
+
+<div id="filler">
+<div id="description"></div>
+</div>
+
+<script type="text/javascript">
+var currentElem=0;
+var maxElem={contents -> f:count()};
+/*<![CDATA[*/
+$('.roundabout-moveable-item').focus(function() {
+	var theID = $(this).attr('id');
+	var useText = document.getElementById(theID+'h').innerHTML;
+	$('#description').html(useText).fadeIn(200);
+	currentElem = parseInt( theID.slice( theID.indexOf("-")+1 ) );
+});
+
+$('#prevExp').click(function(e) {
+	e.preventDefault();
+	currentElem++;
+	if (currentElem>maxElem) currentElem=1;
+	$('.roundabout-holder').roundabout_animateToChild(currentElem-1);
+	var theID='roundabout-'+currentElem+'h';
+	var useText = document.getElementById(theID).innerHTML;
+	$('#description').html(useText).fadeIn(200);
+});
+$('#nextExp').click(function(e) {
+	e.preventDefault();
+	currentElem--;
+	if (currentElem <= 0) currentElem=maxElem;	
+	$('.roundabout-holder').roundabout_animateToChild(currentElem-1);
+	var theID='roundabout-'+currentElem+'h';
+	var useText = document.getElementById(theID).innerHTML;
+	$('#description').html(useText).fadeIn(200);
+});
+
+$(document).ready(function() {
+	$('.roundabout-holder').roundabout({
+		startingChild: 0,
+		easing: 'swing',
+		shape: 'square',
+		duration: 1000,
+		maxScale: 1.0,
+		minScale: 0.2
+	});
+});
+/*]]>*/
+</script>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

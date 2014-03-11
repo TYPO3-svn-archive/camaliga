@@ -12,10 +12,10 @@
 
 $EM_CONF[$_EXTKEY] = array (
 	'title' => 'Camaliga: Carousel/Map/List/Gallery',
-	'description' => 'A powerful and modern extbase carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like FlexSlider or GalleryView. Doc: https://svn.typo3.org/TYPO3v4/Extensions/camaliga/trunk/doc/manual.sxw',
+	'description' => 'A powerful and modern extbase carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like FlexSlider or GalleryView. Manual: https://svn.typo3.org/TYPO3v4/Extensions/camaliga/trunk/doc/manual.sxw',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.0.2',
+	'version' => '1.0.3',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',

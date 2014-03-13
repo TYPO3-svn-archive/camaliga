@@ -71,11 +71,12 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function importAction() {
+		$oldIDs = array();
 		$pid = intval($this->getCurrentPageId());
 		$res = $GLOBALS['TYPO3_DB']->sql_query("SHOW TABLES LIKE 'tx_karussell_inhalt'");
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res)>0) {
 			// get Karussell-entries for current PID
-			$entries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_karussell_inhalt', 'deleted=0 AND hidden=0 AND pid=' . $pid, 'sorting', '', '');
+			$entries = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'tx_karussell_inhalt', 'deleted=0 AND hidden=0 AND pid=' . $pid, 'sys_language_uid, sorting', '', '');
 			if (count($entries) > 0) {
 				if ($this->request->hasArgument('cimport') || $this->request->hasArgument('dimport')) {
 					// Import
@@ -90,10 +91,13 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 						$insert['shortdesc'] = $entries[$i]['meldung'];
 						$insert['link'] = $entries[$i]['link'];
 						$insert['image'] = $this->checkImage($entries[$i]['bild']);
-						$insert['t3_origuid'] = $entries[$i]['t3_origuid'];
-						$insert['l10n_parent'] = $entries[$i]['l10n_parent'];
+						$insert['t3_origuid'] = ($entries[$i]['t3_origuid']) ? intval($oldIDs[$entries[$i]['t3_origuid']]) : 0;
+						$insert['l10n_parent'] = ($entries[$i]['l10n_parent']) ? intval($oldIDs[$entries[$i]['l10n_parent']]) : 0;
 						$insert['sys_language_uid'] = $entries[$i]['sys_language_uid'];
 						$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $insert);
+						if ($success){
+		                    $oldIDs[$entries[$i]['uid']] = $GLOBALS['TYPO3_DB']->sql_insert_id();
+						}
 						copy(PATH_site . 'uploads/tx_karussell/'.$entries[$i]['bild'], PATH_site . 'uploads/tx_camaliga/' . $insert['image']);
 						if ($this->request->hasArgument('dimport'))
 							unlink(PATH_site . 'uploads/tx_karussell/'.$entries[$i]['bild']);
@@ -140,6 +144,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 						$insert['shortdesc'] = $entries[$i]['short'];
 						$insert['link'] = $entries[$i]['link'];
 						$insert['image'] = $this->checkImage($entries[$i]['image']);
+						$insert['sys_language_uid'] = $entries[$i]['sys_language_uid'];
 						$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $insert);
 						copy(PATH_site . 'uploads/pics/' . $entries[$i]['image'], PATH_site . 'uploads/tx_camaliga/' . $insert['image']);
 						if ($this->request->hasArgument('dimport'))

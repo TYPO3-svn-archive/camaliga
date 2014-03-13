@@ -1,0 +1,44 @@
+<f:layout name="Default" />
+
+This template is a carousel that requires jQuery and OWL Caousel from here:
+http://www.owlgraphic.com/owlcarousel/
+Download OWL carousel and include it like this with TypoScript:
+page {
+  includeJS.owl = fileadmin/template/owl/owl-carousel/owl.carousel.min.js
+  includeCSS.owlcss = fileadmin/template/owl/owl-carousel/owl.carousel.css
+  includeCSS.owltheme = fileadmin/template/owl/owl-carousel/owl.theme.css
+}
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+ 
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+    <div id="owl-example" class="owl-carousel">
+      <f:for each="{contents}" as="content" iteration="iteration">
+        <div>
+			<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+			<div style="text-align:center;padding:0 5px;">
+			<h4>{content.title}</h4>
+			<f:format.html>{content.shortdesc}</f:format.html>
+			<f:if condition="{0:content.link} != {0:''}"><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></f:if>
+			</div>
+        </div>
+      </f:for>
+    </div>
+    
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $("#owl-example").owlCarousel();
+	});
+	</script>
+ 
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

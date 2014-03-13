@@ -465,10 +465,19 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	
 	/**
 	 * action Responsive carousel
-	 *
+	 * 
 	 * @return void
 	 */
 	public function responsiveAction() {
+		$this->listAction();
+	}
+
+	/**
+	 * action OWL carousel
+	 *
+	 * @return void
+	 */
+	public function owlAction() {
 		$this->listAction();
 	}
 	

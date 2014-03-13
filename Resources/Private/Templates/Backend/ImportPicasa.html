@@ -28,7 +28,7 @@
   {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.max', default: 'Max')}: 
   <f:form.textfield name="max" value="{max}" size="5" />
   {f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.imgsize', default: 'Img size')}: 
-  <f:form.textfield name="imgsize" value="{imgsize}" size="5" />
+  <f:form.select name="imgsize" options="{94: '94', 110: '110', 128: '128', 200: '200', 220: '220', 288: '288', 320: '320', 400: '400', 512: '512', 576: '576', 640: '640', 720: '720', 800: '800', 912: '912', 1024: '1024', 1152: '1152', 1280: '1280', 1440: '1440', 1600: '1600'}" value="{imgsize}" />
   <f:form.hidden name="importNr" value="-1" id="import_nr" />
   <br />
   <f:form.submit name="set" value="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:importPicasa.set', default: 'Set')}" />
@@ -36,6 +36,7 @@
 </f:section>
 
 
+<f:form.textfield name="imgsize" value="{imgsize}" size="5" />
 <f:debug>{importentry}</f:debug>
 <f:for each="{entries}" as="entry">
   <f:debug>{entry}</f:debug>

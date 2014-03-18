@@ -1,0 +1,55 @@
+<f:layout name="Default" />
+
+Innerfade-Template, based on Innerfade from 
+http://medienfreunde.com/lab/innerfade/
+
+Note 1: Download Innerfade and copy it to your fileadmin-folder. Include it like this:
+page {
+  includeJS.innerfade = fileadmin/template/jquery.innerfade/js/jquery.innerfade.js
+}
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Innerfade.css')}" rel="stylesheet" />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+
+<ul id="innerfade">
+<f:for each="{contents}" as="content">
+<li>
+	<div style="background: url(/uploads/tx_camaliga/{content.image}) no-repeat;" class="innerhinter">
+		<div class="innervorder">
+			<h2>{content.title}</h2>
+			<p>{content.shortdesc}
+			<f:if condition="{0:content.link} != {0:''}"><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></f:if>
+			</p>
+		</div>
+	</div>
+</li>
+</f:for>
+</ul>
+<div class="clearer"><!--  --></div>
+<script Language="JavaScript">
+// Description: http://medienfreunde.com/lab/innerfade/
+$(document).ready(
+	function(){
+		$('ul#innerfade').innerfade({
+			animationtype: 'fade',
+			speed: 1000,
+			timeout: 8000,
+			type: 'sequence',
+			containerheight: '370px'
+		});
+	}
+);
+</script>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

@@ -453,6 +453,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	public function elastislideAction() {
 		$this->listAction();
 	}
+
+	/**
+	 * action Innerfade
+	 *
+	 * @return void
+	 */
+	public function innerfadeAction() {
+		$this->listAction();
+	}
 	
 	/**
 	 * action FlexSlider 2

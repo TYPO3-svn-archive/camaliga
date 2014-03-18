@@ -1,0 +1,9 @@
+ul#innerfade{width:540px;height:370px;list-style-image:none;list-style-type:none;margin:20px 0 0 100px;padding:0}
+ul#innerfade li{display:block;margin:0;padding:0}
+
+.innerhinter{width:540px;height:370px;position:relative}
+.innervorder{position:absolute;bottom:0px;left:100px;width:340px;height:120px;margin:0;padding:0;background:#006B04;text-align:left;filter:alpha(opacity=90);-moz-opacity:0.90;opacity:0.90}
+
+.innervorder h2{color:#fff;font-size:150%;padding:10px 5px 5px 20px;margin:0}
+.innervorder p{color:#fff;font-size:100%;padding:0 5px 0 20px}
+.innervorder p a{color:#bbf}

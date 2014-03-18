@@ -86,6 +86,10 @@
                 <numIndex index="0">Elastislide</numIndex>
                 <numIndex index="1">Content->elastislide</numIndex>
             </numIndex>
+            <numIndex index="25">
+                <numIndex index="0">Innerfade</numIndex>
+                <numIndex index="1">Content->innerfade</numIndex>
+            </numIndex>
             <numIndex index="26">
                 <numIndex index="0">Bootstrap Carousel</numIndex>
                 <numIndex index="1">Content->bootstrap</numIndex>

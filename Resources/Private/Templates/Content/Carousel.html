@@ -39,7 +39,9 @@ margin:{settings.item.margin}px;
 			<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />
 			<h4>{content.title}</h4>
 			<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
-			<f:if condition="{0:content.link} != {0:''}"><p><a href="{content.link}">{f:translate(key: 'more', default: 'more')}</a></p></f:if>
+			<f:if condition="{0:content.link} != {0:''}"><p>
+<f:if condition="{content.link} > 0"><f:then><f:link.page pageUid="{content.link}" class="internal-link">{f:translate(key: 'more', default: 'more')}</f:link.page></f:then><f:else><a href="{content.link}" class="external-link-new-window">{f:translate(key: 'more', default: 'more')}</a></f:else></f:if>
+			</p></f:if>
 		</li>
 	</f:for>
     </ul>

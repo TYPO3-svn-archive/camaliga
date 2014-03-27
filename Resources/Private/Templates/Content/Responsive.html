@@ -1,11 +1,8 @@
 <f:layout name="Default" />
 
 This simple responsive carousel requires only jQuery.
-Note 1: you need at least n+2 elements for this carousel! n: visible elements at one time.
-  If you doesn´t have n+2 elements, set infinite to 0.
-Note 2: you can copy and customise the camaliga/Resources/Public/css/Carousel.css
-  and the camaliga/Resources/Public/JavaScript/jquery.camaliga.js to your fileadmin-folder.
-  Remove that 2 things from this template if you do that...
+Note 2: you can copy and customise the camaliga/Resources/Public/css/Responsive.css to your fileadmin-folder.
+  Remove that line from this template if you do that...
 Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
   plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
   Copy this file in a subfolder named "Content" of this folder.
@@ -20,7 +17,11 @@ Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can spe
 var speed = 800;
 var first = 0;
 var pause = 7000;
+<f:if condition="{0:settings.item.items} != {0:''}"><f:then>
 var max = {settings.item.items};
+</f:then><f:else>
+var max = {contents -> f:count()};
+</f:else></f:if>
 var jetzt = 1;
 /*<![CDATA[*/
 (function($) {
@@ -47,6 +48,9 @@ var jetzt = 1;
   <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
   <div class="grau grau-<f:if condition="{iter.isFirst}"><f:then>ka-first</f:then><f:else><f:if condition="{iter.isLast}"><f:then>ka-last</f:then><f:else>ka-middle</f:else></f:if></f:else></f:if>" id="grau-{iter.cycle}">
 	<h3>{content.title}</h3><f:format.html>{content.shortdesc}</f:format.html>
+	<f:if condition="{0:content.link} != {0:''}"><p>
+<f:if condition="{content.link} > 0"><f:then><f:link.page pageUid="{content.link}" class="internal-link">{f:translate(key: 'more', default: 'more')}</f:link.page></f:then><f:else><a href="{content.link}" class="external-link-new-window">{f:translate(key: 'more', default: 'more')}</a></f:else></f:if>
+	</p></f:if>
   </div>
 </li>
 </f:for>

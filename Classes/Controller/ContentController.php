@@ -482,6 +482,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
+	 * action OWL carousel + SimpleModal
+	 *
+	 * @return void
+	 */
+	public function owlSimpleModalAction() {
+		$this->listAction();
+	}
+
+	/**
 	 * action OWL carousel
 	 *
 	 * @return void
@@ -489,7 +498,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	public function owlAction() {
 		$this->listAction();
 	}
-	
 	/**
 	 * action test
 	 *

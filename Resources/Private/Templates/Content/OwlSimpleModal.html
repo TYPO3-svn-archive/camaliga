@@ -2,8 +2,12 @@
 
 This template is a carousel that requires jQuery and OWL Caousel from here:
 http://www.owlgraphic.com/owlcarousel/
-Download OWL carousel and include it like this with TypoScript:
+And you need SimpleModal from here:
+http://www.ericmmartin.com/projects/simplemodal/
+Download both and include them like this with TypoScript:
 page {
+  includeJS.simplemodal = fileadmin/template/simplemodal/basic/js/jquery.simplemodal.js
+  includeCSS.simplecss = fileadmin/template/simplemodal/basic/css/basic.css
   includeJS.owl = fileadmin/template/owl/owl-carousel/owl.carousel.min.js
   includeCSS.owlcss = fileadmin/template/owl/owl-carousel/owl.carousel.css
   includeCSS.owltheme = fileadmin/template/owl/owl-carousel/owl.theme.css
@@ -22,11 +26,17 @@ Note: if you want to copy this HTML-file to your fileadmin-folder, you can speci
         <div>
 			<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
 			<div style="text-align:center;padding:0 5px;">
-			<h4>{content.title}</h4>
-			<f:format.html>{content.shortdesc}</f:format.html>
-			<f:if condition="{0:content.link} != {0:''}"><p>
+			<h4>{content.title}</h4>			
+			<p><a href="javascript:$('#hidden{iteration.index}').modal();">Details</a></p>
+			</div>
+			<div id="hidden{iteration.index}" style="display:none;">
+				<h1>{content.title}</h1>
+				<f:format.html>{content.shortdesc}</f:format.html>
+				<f:format.html>{content.longdesc}</f:format.html>
+				<p><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" /></p>
+				<f:if condition="{0:content.link} != {0:''}"><p>
 <f:if condition="{content.link} > 0"><f:then><f:link.page pageUid="{content.link}" class="internal-link">{f:translate(key: 'more', default: 'more')}</f:link.page></f:then><f:else><a href="{content.link}" class="external-link-new-window">{f:translate(key: 'more', default: 'more')}</a></f:else></f:if>
-			</p></f:if>
+				</p></f:if>
 			</div>
         </div>
       </f:for>

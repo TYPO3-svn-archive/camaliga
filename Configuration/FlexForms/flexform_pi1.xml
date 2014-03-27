@@ -99,6 +99,10 @@
                 <numIndex index="1">Content->owl</numIndex>
             </numIndex>
             <numIndex index="28">
+                <numIndex index="0">OWL Carousel + SimpleModal</numIndex>
+                <numIndex index="1">Content->owlSimpleModal</numIndex>
+            </numIndex>
+            <numIndex index="29">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.responsive</numIndex>
                 <numIndex index="1">Content->responsive</numIndex>
             </numIndex>

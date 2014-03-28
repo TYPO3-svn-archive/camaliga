@@ -27,7 +27,7 @@ Note: if you want to copy this HTML-file to your fileadmin-folder, you can speci
 			<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
 			<div style="text-align:center;padding:0 5px;">
 			<h4>{content.title}</h4>			
-			<p><a href="javascript:$('#hidden{iteration.index}').modal();">Details</a></p>
+			<p><a href="#" class="modallink" id="den{iteration.index}">Details</a></p>
 			</div>
 			<div id="hidden{iteration.index}" style="display:none;">
 				<h1>{content.title}</h1>
@@ -47,7 +47,12 @@ Note: if you want to copy this HTML-file to your fileadmin-folder, you can speci
 	  $("#owl-example").owlCarousel({
 		    navigation : true,
 		    navigationText : ["zurück", "vorwärts"]
-		  });
+	  });
+	  $('.modallink').click(function( event ) {
+		  event.preventDefault();
+		  pos = $(this).attr("id");
+		  $('#hid'+pos).modal();
+	  });
 	});
 	</script>
  

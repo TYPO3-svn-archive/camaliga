@@ -22,8 +22,8 @@ plugin.tx_camaliga {
 		img {
 		  width = 700
 		  height = 500
-		  thumbWidth = 95
-		  thumbHeight = 68
+		  thumbWidth = 195
+		  thumbHeight = 139
 		}
 		item {
 		  width = 195

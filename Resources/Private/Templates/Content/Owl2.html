@@ -1,0 +1,54 @@
+<f:layout name="Default" />
+
+This template is a carousel that requires jQuery and OWL Caousel 2 from here:
+http://owlcarousel.owlgraphic.com/index.html
+Download OWL carousel 2 and include it like this with TypoScript:
+
+page {
+  includeJSFooter.owl2 = fileadmin/template/OwlCarousel2-develop/src/js/owl.carousel.js
+  includeJSFooter.owlautoplay = fileadmin/template/OwlCarousel2-develop/src/js/owl.autoplay.js
+  includeCSS.owl2css = fileadmin/template/OwlCarousel2-develop/src/css/owl.carousel.css
+  includeCSS.owl2csstheme = fileadmin/template/OwlCarousel2-develop/src/css/owl.theme.default.css
+}
+
+Start it with:
+
+page.jsFooterInline.810 = TEXT
+page.jsFooterInline.810.value = var owl = $('.owl-carousel'); owl.owlCarousel({ center: false, responsive: { 0: { items: 1 }, 480: { items: 2 }, 800: { items: 3 } } });
+page.jsFooterInline.811 = TEXT
+page.jsFooterInline.811.value = $('.customNextBtn').click(function(event) { event.preventDefault(); owl.trigger('next.owl.carousel'); });
+page.jsFooterInline.812 = TEXT
+page.jsFooterInline.812.value = $('.customPrevBtn').click(function(event) { event.preventDefault(); owl.trigger('prev.owl.carousel'); });
+
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+ 
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+	<a href="#" class="customPrevBtn">zurück</a>
+	<a href="#" class="customNextBtn">weiter</a>
+	
+    <div id="owl-example" class="owl-carousel">
+      <f:for each="{contents}" as="content" iteration="iteration">
+        <div class="item">
+			<img src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+			<div style="text-align:center;padding:0 5px;">
+			<h4>{content.title}</h4>
+			<f:format.html>{content.shortdesc}</f:format.html>
+			<f:if condition="{0:content.link} != {0:''}"><p>
+<f:if condition="{content.link} > 0"><f:then><f:link.page pageUid="{content.link}" class="internal-link">{f:translate(key: 'more', default: 'more')}</f:link.page></f:then><f:else><a href="{content.link}" class="external-link-new-window">{f:translate(key: 'more', default: 'more')}</a></f:else></f:if>
+			</p></f:if>
+			</div>
+        </div>
+      </f:for>
+    </div>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

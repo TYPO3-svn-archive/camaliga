@@ -1,57 +1,56 @@
-..  Editor configuration
-	...................................................
-	* utf-8 with BOM as encoding
-	* tab indent with 4 characters for code snippet.
-	* optional: soft carriage return preferred.
+﻿
 
-.. Includes roles, substitutions, ...
-.. include:: _IncludedDirectives.rst
+.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
 
-=================
-Extension Name
-=================
+.. ==================================================
+.. DEFINE SOME TEXTROLES
+.. --------------------------------------------------
+.. role::   underline
+.. role::   typoscript(code)
+.. role::   ts(typoscript)
+   :class:  typoscript
+.. role::   php(code)
 
-:Extension name: Extbase Carousel
-:Extension key: extbase_carousel
-:Version: 0.0.1
-:Description: manuals covering TYPO3 extension "Extbase Carousel"
-:Language: en
-:Author: Kurt Gusbeth
-:Creation: 2013-09-12
-:Generation: 15:59
-:Licence: Open Content License available from `www.opencontent.org/opl.shtml <http://www.opencontent.org/opl.shtml>`_
+=========================================
+EXT: Camaliga - carousel/map/list/gallery
+=========================================
 
-The content of this document is related to TYPO3, a GNU/GPL CMS/Framework available from `www.typo3.org
-<http://www.typo3.org/>`_
+:Classification:
+      camaliga
 
-**Table of Contents**
+:Description:
+      Camaliga carousel/map/list/gallery is a modern and flexible extension to display elements in different ways. It can use categories for sorting and restriction in the FE. You can use different jQuery-plugins.
+
+:Keywords:
+      extbase, fluid, carousel, gallery, google, maps, geo
+
+:Author:
+      Kurt Gusbeth
+
+:Email:
+      info@quizpalme.de
+
+:Website:
+      `www.quizpalme.de <http://www.quizpalme.de/>`_
+
+:Spachen:
+      `english Version <http://docs.typo3.org/typo3cms/extensions/camaliga/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/camaliga/de-de/>`_
+
 
 .. toctree::
-	:maxdepth: 2
+   :maxdepth: 5
+   :titlesonly:
+   :glob:
 
-	ProjectInformation
-	UserManual
-	AdministratorManual
-	TyposcriptReference
-	DeveloperCorner
-	RestructuredtextHelp
-
-.. STILL TO ADD IN THIS DOCUMENT
-	@todo: add section about how screenshots can be automated. Pointer to PhantomJS could be added.
-	@todo: explain how documentation can be rendered locally and remotely.
-	@todo: explain what files should be versionned and what not (_build, Makefile, conf.py, ...)
-
-.. include:: ../Readme.rst
-
-What does it do?
-=================
-
-In this chapter should be given a brief overview of the extension. What does it do? What problem does it solve? Who is interested in this? Basically, this section includes everything people need to know to decide whether they should go on with this extension.
-
-.. figure:: Images/IntroductionPackage.png
-		:width: 500px
-		:alt: Introduction Package
-
-		Introduction Package just after installation (caption of the image)
-
-		How the Frontend of the Introduction Package looks like just after installation (legend of the image)
+   Introduction/Index
+   UsersManual/Index
+   Administration/Index
+   Configuration/Index
+   Tutorial/Index
+   Updating/Index
+   KnownProblems/Index
+   To-doList/Index
+   Changelog/Index

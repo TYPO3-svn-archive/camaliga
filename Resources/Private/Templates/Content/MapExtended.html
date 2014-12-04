@@ -55,7 +55,7 @@
 	  <f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 		<div class="ad-cat_item ad-{zebraClass}"><div class="ad-cat_title">{catitemVal.title}: </div><div class="ad-cat_elements">
 		<f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
-			<label for="cat{catitemKey}_0" class="radio inline">
+			<label for="cat{catitemKey}_0" class="radio-inline">
 				<f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
 				egal
 			</label>
@@ -63,11 +63,11 @@
 		<f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
 			<f:if condition="{0:catitemVal.description} == {0:'checkbox'}">
 				<f:then>
-					<label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox inline">
+					<label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox-inline">
 					<f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
 				</f:then>
 				<f:else>
-					<label for="cat{catitemKey}_{catitemKeyChild}" class="radio inline">
+					<label for="cat{catitemKey}_{catitemKeyChild}" class="radio-inline">
 					<f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
 				</f:else>
 			</f:if>
@@ -77,7 +77,7 @@
 	  </f:cycle>
 	</f:for>
 	<div class="ad-submit_wrapper">
-	<f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="submit" />
+	<f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="btn btn-primary" />
 	<input type="hidden" name="no_cache" value="1" />
 	</div><div class="clearer"> </div>
 </div>

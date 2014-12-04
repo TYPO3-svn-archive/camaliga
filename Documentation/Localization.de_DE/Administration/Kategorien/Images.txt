@@ -1,0 +1,5 @@
+﻿.. |img-30|     image:: ../../../Images/cat_diagram4.png
+.. :align: left
+.. :border: 0
+.. :name: Categories
+.. :width: 100%

@@ -111,8 +111,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 					'sys_category_record_mm AS mm, tx_camaliga_domain_model_content AS con',
 					"mm.tablenames='tx_camaliga_domain_model_content' AND
 					 mm.uid_foreign=con.uid AND mm.uid_local IN (" . $uidsChilds . ')' . $where);
-				$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-				if ($rows>0) {
+				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
 					while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
 						$uid = $row['uid_foreign'];
 						$elements[$uid]++;
@@ -124,7 +123,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$max++;
 			}
 			
-			// take only elements where all matches where true
+			// take only elements where all matches were true
 			foreach ($elements as $uid => $count) {
 				if ($count == $max) $results[] = $uid;
 			}

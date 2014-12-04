@@ -4,7 +4,8 @@ float:left; /* important for inline positioning */
 overflow: hidden;  /* important (hide the items outside the div) */
 /* non-important styling bellow */
 background: #fff;
-padding:0 5px;
+padding:0;
+margin:0;
 }
 
 #carousel_ul {

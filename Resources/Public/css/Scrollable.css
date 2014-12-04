@@ -6,8 +6,8 @@
     /* required settings */
     position:relative;
     overflow:hidden;
-    width: 603px;
-    height:103px;
+    width: 634px;
+    height:96px;
 
     /* custom decorations */
     border:1px solid #ccc;
@@ -28,13 +28,13 @@
 
 .items div {
     float:left;
-    width:603px;
+    width:634px;
 }
 
 /* single scrollable item */
 .scrollable img {
     float:left;
-    margin:11px 0 11px 12px;
+    margin:11px 0 11px 21px;
     background-color:#fff;
     padding:2px;
     border:1px solid #ccc;
@@ -104,8 +104,8 @@ a.disabled {
 /* styling for the image wrapper  */
 #jimage_wrap {
     /* dimensions */
-    width:700px;
-    height:500px;
+    width:708px;
+    height:508px;
     padding:2px;
     margin-bottom:11px;
  
@@ -120,6 +120,6 @@ a.disabled {
 }
 
 /* other */
-#jscrollable_wrap { margin:0 auto; width: 700px; height:120px; }
+#jscrollable_wrap { width: 708px; height:96px; }
 #jtitle_wrap { text-align:center; padding-bottom:5px;margin-bottom:0; }
 #jdescription_wrap { text-align:center; padding-bottom:10px; }

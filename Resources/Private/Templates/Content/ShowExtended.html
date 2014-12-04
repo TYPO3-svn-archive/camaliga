@@ -27,7 +27,7 @@ This example shows one selected element and their neighboring elements and a goo
 		<f:if condition="{0:content.custom2} != {0:''}">Custom 2: {content.custom2}.</f:if>
 		<f:if condition="{0:content.custom3} != {0:''}">Custom 3: {content.custom3}.</f:if>
 	</div>
-	<f:for each="{content.categories}" as="catMMval" key="catMMkey">
+	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
 		{catMMval.title}:
 		<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
 			<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>

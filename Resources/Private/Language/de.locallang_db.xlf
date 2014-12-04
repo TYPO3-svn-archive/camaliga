@@ -34,6 +34,15 @@
 			<trans-unit id="tx_camaliga_domain_model_content.country">
 				<target>Land</target>
 			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.phone">
+				<target>Telefon-Nr.</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mobile">
+				<target>Handy-Nr.</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.email">
+				<target>E-Mail</target>
+			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.latitude">
 				<target>Latitude</target>
 			</trans-unit>

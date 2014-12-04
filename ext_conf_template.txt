@@ -1,0 +1,2 @@
+# cat=basic//10; type=boolean; label=Ignore the category relations of translated elements
+categoryMode = 1

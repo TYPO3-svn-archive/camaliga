@@ -1,0 +1,77 @@
+<f:layout name="Default" />
+
+This responsive carousel by Basilio Cáceres requires jQuery and his carousel from:
+http://basilio.github.io/responsiveCarousel/
+Download it and include it like this with TypoScript:
+page {
+  includeJS.respCar = fileadmin/template/responsiveCarousel-master/responsiveCarousel.min.js
+}
+Start it with:
+page.jsFooterInline.794 = TEXT
+page.jsFooterInline.794.value = $('.crsl-items').carousel({ overflow: true, visible: imax, itemMinWidth: iwidth, itemMargin: imargin });
+Now define the item-settings via Flexform or TypoScript.
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+
+
+<f:section name="main">
+<f:flashMessages />
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<style type="text/css">
+/*----------------------------------- Gallery */
+.crsl-items{
+	margin: 30px auto;
+}
+.crsl-item figcaption{
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
+	color: #FFF;
+	background: rgba(0,0,0,.5);
+}
+.crsl-nav{
+	position: relative;
+	min-height: 1px;
+}
+.crsl-nav .previous{
+	float: left;
+}
+.crsl-nav .next{
+	float: right;
+}
+</style>
+<script type="text/javascript">
+var iwidth = {settings.item.width};
+var imargin = {settings.item.margin};
+<f:if condition="{0:settings.item.items} != {0:''}"><f:then>
+var imax = {settings.item.items};
+</f:then><f:else>
+var imax = {contents -> f:count()};
+</f:else></f:if>
+</script>
+
+<div id="NAV-ID" class="crsl-nav">
+	<a href="#" class="previous">Previous</a>
+	<a href="#" class="next">Next</a>
+</div>
+<div class="crsl-items" data-navigation="NAV-ID">
+	<div class="crsl-wrap">
+	<f:for each="{contents}" as="content" iteration="iter">
+		<figure class="crsl-item">
+			<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" />
+			<figcaption>{content.title}</figcaption>
+		</figure>
+	</f:for>
+	</div>
+</div>
+</f:then>
+<f:else>
+ <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

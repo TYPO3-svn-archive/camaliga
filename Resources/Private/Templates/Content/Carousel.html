@@ -11,17 +11,20 @@ Note 2: you can copy and customise the camaliga/Resources/Public/css/Carousel.cs
 Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
   plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
   Copy this file in a subfolder named "Content" of this folder.
-
+Note 4: if your width contains the padding too, you must activate "addPadding" via TypoScript or FlexForms too.
+  This are all avaiable variables for the size: paddingItemWidth, totalItemWidth, itemWidth, totalWidth, 
+  paddingItemHeight, totalItemHeight, itemHeight and the img- and item-settings.
 
 <f:section name="main">
 <f:flashMessages />
 <style>
 #carousel_inner {
 width:{totalWidth}px;
+height:{totalItemHeight}px;
 }
 #carousel_ul li{
-width:{settings.item.width}px;
-height:{settings.item.height}px;
+width:{itemWidth}px;
+height:{itemHeight}px;
 padding:{settings.item.padding}px;
 margin:{settings.item.margin}px;
 }
@@ -52,14 +55,14 @@ margin:{settings.item.margin}px;
 <div style="clear:both;"><!-- --></div>
 <script>
 // width of an item with width, padding and margin left + right
-var item_width = {settings.item.width} + (2*{settings.item.padding}) + (2*{settings.item.margin});
+var item_width = {totalItemWidth};
 /*<![CDATA[*/
 $(window).load(function() {
   $('#carousel_ul').camaliga({
-	auto_slide: 0,	// auto slide?
-    hover_pause: 0,	// pause on hover?
+	auto_slide: 0,	// auto slide (0, 1)?
+    hover_pause: 0,	// pause on hover (0, 1)?
 	auto_slide_seconds: 5000, // auto slide in milliseconds
-	infinite: 1,	// infinite carousel? Then you need at least n+2 elements!
+	infinite: 1,	// infinite carousel (0, 1)? Then you need at least n+2 elements!
 	item_width: item_width,	// item width of the li-element. Only needed if li has a padding>0 or margin>0
 	li_name: 'li.carousel_li',	// only needed, if you use ul,li in the element itself
 	left_scroll: '#left_scroll',	// only needed, if you want to change the arrow at the first element when infinite=0 (class camaliga_first will be added)

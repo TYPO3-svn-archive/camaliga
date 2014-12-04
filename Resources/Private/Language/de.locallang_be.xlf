@@ -13,6 +13,9 @@
 			<trans-unit id="item">
 				<target>Elemente</target>
 			</trans-unit>
+			<trans-unit id="categories">
+				<target>Kategorien</target>
+			</trans-unit>
 			<trans-unit id="template">
 				<target>HTML-Template:</target>
 			</trans-unit>
@@ -39,6 +42,9 @@
 			</trans-unit>
 			<trans-unit id="template.responsive">
 				<target>Einfaches responsives Karussell</target>
+			</trans-unit>
+			<trans-unit id="templateLayout">
+				<target>Template-Layout (siehe Doku):</target>
 			</trans-unit>
 			<trans-unit id="sortBy">
 				<target>Standard-Sortierung nach:</target>
@@ -73,6 +79,9 @@
 			<trans-unit id="onlyDistinct">
 				<target>Zeige nur einmalige Elemente an (Mutter oder ein Kind)?</target>
 			</trans-unit>
+			<trans-unit id="addPadding">
+				<target>Padding zu Breite und Höhe hinzuaddieren?</target>
+			</trans-unit>
 			<trans-unit id="listId">
 				<target>Wo ist die Listen-Seite (man muss die Variable {settings.listId} noch im Template hinzufügen)?</target>
 			</trans-unit>
@@ -105,6 +114,18 @@
 			</trans-unit>
 			<trans-unit id="items">
 				<target>Anzahl sichtbarer Elemente ({settings.item.items}):</target>
+			</trans-unit>
+			<trans-unit id="default_categories">
+				<target>Ausgewählte Kategorien (UND für radio-Buttons und ODER für Checkboxen):</target>
+			</trans-unit>
+			<trans-unit id="categoryMode">
+				<target>Kategorie-Modus:</target>
+			</trans-unit>
+			<trans-unit id="categoryMode.original">
+				<target>Benutze die Kategorie-Relationen der Original-Elemente</target>
+			</trans-unit>
+			<trans-unit id="categoryMode.translated">
+				<target>Benutze die Kategorie-Relationen der übersetzen Elemente (bugy)</target>
 			</trans-unit>
 			<trans-unit id="yes">
 				<target>ja</target>

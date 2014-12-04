@@ -97,6 +97,27 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 * @var \string
 	 */
 	protected $country;
+
+	/**
+	 * Phone number
+	 *
+	 * @var \string
+	 */
+	protected $phone;
+	
+	/**
+	 * Mobile number
+	 *
+	 * @var \string
+	 */
+	protected $mobile;
+	
+	/**
+	 * E-Mail
+	 *
+	 * @var \string
+	 */
+	protected $email;
 	
 	/**
 	 * Latitude
@@ -141,9 +162,9 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	protected $mother;
 	
 	/**
-	 * Categories
+	 * Categories. Früher: integer
 	 *
-	 * @var \integer
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
 	 */
 	protected $categories;
 	
@@ -320,6 +341,63 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	}
 	
 	/**
+	 * Returns the phone
+	 *
+	 * @return \string $phone
+	 */
+	public function getPhone() {
+		return $this->phone;
+	}
+
+	/**
+	 * Sets the phone
+	 *
+	 * @param \string $phone
+	 * @return void
+	 */
+	public function setPhone($phone) {
+		$this->phone = $phone;
+	}
+	
+	/**
+	 * Returns the mobile
+	 *
+	 * @return \string $mobile
+	 */
+	public function getMobile() {
+		return $this->mobile;
+	}
+
+	/**
+	 * Sets the mobile
+	 *
+	 * @param \string $mobile
+	 * @return void
+	 */
+	public function setMobile($mobile) {
+		$this->mobile = $mobile;
+	}
+	
+	/**
+	 * Returns the email
+	 *
+	 * @return \string $email
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+
+	/**
+	 * Sets the email
+	 *
+	 * @param \string $email
+	 * @return void
+	 */
+	public function setEmail($email) {
+		$this->email = $email;
+	}
+	
+	/**
 	 * Returns the latitude
 	 *
 	 * @return \float $latitude
@@ -432,63 +510,98 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	public function setMother(\quizpalme\Camaliga\Domain\Model\Content $mother) {
 		$this->mother = $mother;
 	}
+
+	/**
+	 * Adds a Category
+	 *
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $category
+	 * @return void
+	 */
+	public function addCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $category) {
+		$this->categories->attach($category);
+	}
 	
 	/**
-	 * Returns the categories
+	 * Removes a Category
 	 *
-	 * @return \array $categories
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove The Category to be removed
+	 * @return void
 	 */
-	public function getCategories() {
-		$cats = array();
-		$all_cats = array();
-		if ($this->categories>0) {
-			// Step 1: select all categories
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'uid, parent, title',
-				'sys_category',
-				'deleted=0 AND hidden=0');
-			$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-			if ($rows>0) {
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-					$uid = $row['uid'];
-					$all_cats[$uid] = array();
-					$all_cats[$uid]['parent'] = $row['parent'];
-					$all_cats[$uid]['title'] = $row['title'];
-				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
-			}
-			// Step 2: get the mm-categories of the current element
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'uid_local',
-				'sys_category_record_mm',
-				"tablenames='tx_camaliga_domain_model_content' AND uid_foreign=".$this->getUid());
-			$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-			if ($rows>0) {
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-					$uid = $row['uid_local'];
-					if (!$all_cats[$uid]['parent']) continue;
-					$parent = $all_cats[$uid]['parent'];
-					if (!is_array($cats[$parent])) {
-						$cats[$parent] = array();
-						$cats[$parent]['childs'] = array();
-						$cats[$parent]['title'] = $all_cats[$parent]['title'];
-					}
-					$cats[$parent]['childs'][$uid] = $all_cats[$uid]['title'];
-				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
-			}
-		}
-		return $cats;
+	public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove) {
+		$this->categories->detach($categoryToRemove);
 	}
 	
 	/**
 	 * Sets the categories
 	 *
-	 * @param \integer $categories
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
 	 * @return void
 	 */
-	public function setCategories($categories) {
+	public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
 		$this->categories = $categories;
+	}
+	
+	/**
+	 * Returns the categories
+	 *
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
+	 */
+	public function getCategories() {
+		return $this->categories;
+	}
+	
+	/**
+	 * Returns the categories: Kategorien und dessen Vater eines Elements
+	 *
+	 * @return \array categories
+	 */
+	public function getCategoriesAndParents() {
+		$cats = array();
+		if ($this->categories) {
+			$configuration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
+			$catMode = intval($configuration["categoryMode"]);
+			$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
+			// Step 1: select all categories of the current language
+			$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\quizpalme\Camaliga\Utility\AllCategories');
+			$all_cats = $categoriesUtility->getCategoriesarrayComplete();
+			// Step 2: aktuelle orig_uid herausfinden
+			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
+			if ($lang > 0 && $catMode == 0) {
+				$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+						'uid',
+						'tx_camaliga_domain_model_content',
+						'deleted=0 AND hidden=0 AND sys_language_uid=' . $lang . ' AND t3_origuid=' . $orig_uid);
+				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
+					while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4))
+						if ($row['uid']) {
+							$orig_uid = intval($row['uid']);	// uid of the translated element
+						}
+				}
+				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+			}
+			// Step 3: get the mm-categories of the current element (from the original or translated element)
+			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'uid_local',
+				'sys_category_record_mm',
+				"tablenames='tx_camaliga_domain_model_content' AND uid_foreign=" . $orig_uid);
+			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
+				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
+					$uid = $row['uid_local'];
+					if (!isset($all_cats[$uid]['parent'])) continue;
+					$parent = (int) $all_cats[$uid]['parent'];
+					//if (!$all_cats[$parent]['title'])	continue;
+					if (!isset($cats[$parent])) {
+						$cats[$parent] = array();
+						$cats[$parent]['childs'] = array();
+						$cats[$parent]['title'] = $all_cats[$parent]['title'];
+					}
+					if ($all_cats[$uid]['title'])
+						$cats[$parent]['childs'][$uid] = $all_cats[$uid]['title'];
+				}
+			}
+			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+		}
+		return $cats;
 	}
 }
 ?>

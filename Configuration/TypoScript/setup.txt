@@ -19,6 +19,7 @@ plugin.tx_camaliga {
 		sortOrder =
 		random = 0
 		onlyDistinct = 0
+		addPadding = 0
 		img {
 		  width = 700
 		  height = 500
@@ -36,6 +37,7 @@ plugin.tx_camaliga {
 		defaultStoragePids =
 		defaultCatIDs =
 		debug = 0
+		# categoryMode = see extension-configuration
 	}
 }
 

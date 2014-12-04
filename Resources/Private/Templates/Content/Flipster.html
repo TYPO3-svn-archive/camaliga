@@ -1,0 +1,46 @@
+<f:layout name="Default" />
+
+This template is a carousel that requires jQuery and jQuery.Flipster from here:
+https://github.com/drien/jquery-flipster
+Download it and include it like this with TypoScript:
+page {
+  includeJS.flipster = fileadmin/jquery-flipster-master/src/js/jquery.flipster.min.js
+  includeCSS.flipstercss = fileadmin/jquery-flipster-master/src/css/jquery.flipster.min.css
+}
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+ 
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div class="flipster">
+  <ul class="flip-items">
+  <f:for each="{contents}" as="content" iteration="iter">
+    <li>
+    	<h3>{content.title}</h3>
+		<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="400m" /><br>
+		<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
+			<f:if condition="{0:content.link} != {0:''}"><p>
+<f:if condition="{content.link} > 0"><f:then><f:link.page pageUid="{content.link}" class="internal-link">{f:translate(key: 'more', default: 'more')}</f:link.page></f:then><f:else><a href="{content.link}" class="external-link-new-window">{f:translate(key: 'more', default: 'more')}</a></f:else></f:if>
+			</p></f:if>
+    </li>
+  </f:for>
+  </ul>
+</div>
+<script type="text/javascript">
+/*<![CDATA[*/
+	$(document).ready(function(){
+		$(function(){ $(".flipster").flipster({ style: 'carousel', start: 'center' }); });
+	});
+/*]]>*/
+</script>
+ 
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

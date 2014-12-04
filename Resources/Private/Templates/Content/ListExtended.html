@@ -34,7 +34,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 	<f:if condition="{0:content.street} != {0:''}">Address: {content.street}, {content.zip} {content.city}, {content.country}.</f:if>
 	</div>
 	<div>
-   	<f:for each="{content.categories}" as="catMMval" key="catMMkey">
+   	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
 		{catMMval.title}:
 		<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
 			<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>
@@ -60,7 +60,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
   <f:for each="{categories}" as="catitemVal" key="catitemKey">
     {catitemVal.title}:
     <f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
-      <label for="cat{catitemKey}_0" class="radio inline">
+      <label for="cat{catitemKey}_0" class="radio-inline">
         <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
         every &nbsp;
       </label>
@@ -68,11 +68,11 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
     <f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
       <f:if condition="{0:catitemVal.description} == {0:'checkbox'}">
         <f:then>
-          <label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox inline">
+          <label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox-inline">
           <f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
         </f:then>
         <f:else>
-          <label for="cat{catitemKey}_{catitemKeyChild}" class="radio inline">
+          <label for="cat{catitemKey}_{catitemKeyChild}" class="radio-inline">
           <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
         </f:else>
       </f:if>
@@ -85,7 +85,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
   <f:then>
   	<div class="ad-cat_item"><div class="ad-cat_title">Folder: </div><div class="ad-cat_elements">
 	<f:for each="{storagePIDsData}" as="storagePIDarray2" key="storagePID">
-      <label for="pid_{storagePID}" class="checkbox inline">
+      <label for="pid_{storagePID}" class="checkbox-inline">
        <f:form.checkbox name="pid_{storagePID}" id="pid_{storagePID}" value="{storagePID}" checked="{storagePIDarray2.selected} == {storagePID}" />
        {storagePIDarray2.title}</label>
 	</f:for>
@@ -94,7 +94,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
   </f:if>
 
   <div class="ad-submit_wrapper">
-  <f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="submit" />
+  <f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="btn btn-primary" />
   <input type="hidden" name="no_cache" value="1" />
   </div>
 </div>

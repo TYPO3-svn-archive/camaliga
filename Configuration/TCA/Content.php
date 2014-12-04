@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_camaliga_domain_model_content'] = array(
 	'ctrl' => $TCA['tx_camaliga_domain_model_content']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc, link, image, street, zip, city, country, latitude, longitude, custom1, custom2, custom3, mother',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc, link, image, street, zip, city, country, latitude, longitude, phone, mobile, email, custom1, custom2, custom3, mother',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, shortdesc, longdesc, link, image, street, zip, city, country, latitude, longitude, custom1, custom2, custom3, mother,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, shortdesc, longdesc, link, image, street, zip, city, country, latitude, longitude, phone, mobile, email, custom1, custom2, custom3, mother,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -199,6 +199,33 @@ $TCA['tx_camaliga_domain_model_content'] = array(
 		'country' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.country',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'phone' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.phone',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'mobile' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.mobile',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
+		'email' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.email',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,

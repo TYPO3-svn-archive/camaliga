@@ -2,30 +2,24 @@
 
 /***************************************************************
  * Extension Manager/Repository config file for ext "camaliga".
- *
- * Auto generated 10-02-2014 11:12
- *
- * Manual updates:
- * Only the data in the array - everything else is removed by next
- * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array (
-	'title' => 'Camaliga: Carousel/Map/List/Gallery',
-	'description' => 'A powerful and modern extbase carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like FlexSlider or GalleryView. Manual: https://svn.typo3.org/TYPO3v4/Extensions/camaliga/trunk/doc/manual.sxw',
+	'title' => 'Camaliga: CArousel/MAp/LIst/GAllery',
+	'description' => 'A modern extbase carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like FlexSlider or GalleryView. Indexer for ke_search.',
 	'category' => 'plugin',
-	'shy' => 0,
-	'version' => '1.2.0',
+	'shy' => false,
+	'version' => '2.0.4',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
 	'loadOrder' => NULL,
 	'module' => '',
 	'state' => 'stable',
-	'uploadfolder' => 1,
+	'uploadfolder' => true,
 	'createDirs' => '',
 	'modify_tables' => '',
-	'clearcacheonload' => 0,
+	'clearcacheonload' => false,
 	'lockType' => '',
 	'author' => 'Kurt Gusbeth',
 	'author_email' => 'info@quizpalme.de',
@@ -36,9 +30,7 @@ $EM_CONF[$_EXTKEY] = array (
 	array (
 		'depends' => 
 		array (
-			'extbase' => '6.0.0',
-			'fluid' => '6.0.0',
-			'typo3' => '6.0.0-6.2.99',
+			'typo3' => '6.2.2-7.0.99'
 		),
 		'conflicts' => 
 		array (
@@ -48,4 +40,5 @@ $EM_CONF[$_EXTKEY] = array (
 		),
 	),
 );
+
 ?>

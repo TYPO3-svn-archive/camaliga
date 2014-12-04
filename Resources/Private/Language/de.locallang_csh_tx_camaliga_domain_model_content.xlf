@@ -31,6 +31,15 @@
 			<trans-unit id="country.description">
 				<target>Land</target>
 			</trans-unit>
+			<trans-unit id="phone.description">
+				<target>Telefon-Nr.</target>
+			</trans-unit>
+			<trans-unit id="mobile.description">
+				<target>Handy-Nr.</target>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<target>E-Mail</target>
+			</trans-unit>
 			<trans-unit id="latitude.description">
 				<target>Latitude</target>
 			</trans-unit>

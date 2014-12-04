@@ -1,0 +1,62 @@
+<f:layout name="Default" />
+
+This template is a responsive gallery that requires jQuery and S Gallery from here:
+http://sarasoueidan.com/blog/s-gallery/
+More infos in german about the plugin:
+http://t3n.de/news/s-gallery-responsive-509154/
+Download S Gallery and include it like this with TypoScript:
+page {
+  includeJS.sgallery1 = fileadmin/s-gallery-master/js/plugins.js
+  includeJS.sgallery2 = fileadmin/s-gallery-master/js/scripts.js
+  includeCSS.sgallerycss = fileadmin/s-gallery-master/css/styles.css
+}
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+ 
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div id="gallery-container">
+  <ul class="items--small">
+  <f:for each="{contents}" as="content">
+    <li class="item"><a href="#"><f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="" /></a></li>
+  </f:for>
+  </ul>
+  <ul class="items--big">
+  <f:for each="{contents}" as="content">
+    <li class="item--big">
+      <a href="#">
+        <figure>
+          <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+          <figcaption class="img-caption">{content.title}</figcaption>
+        </figure>
+      </a>
+    </li>
+  </f:for>
+  </ul>
+  <div class="controls">
+    <span class="control icon-arrow-left" data-direction="previous"></span> 
+    <span class="control icon-arrow-right" data-direction="next"></span> 
+    <span class="grid icon-grid"></span>
+    <span class="fs-toggle icon-fullscreen"></span>
+  </div>
+</div>
+<script type="text/javascript">
+/*<![CDATA[*/
+	$(document).ready(function(){
+	  $('#gallery-container').sGallery({
+	    fullScreenEnabled: true
+	  });
+	});
+/*]]>*/
+</script>
+ 
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

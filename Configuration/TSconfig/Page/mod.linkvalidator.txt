@@ -1,0 +1,3 @@
+mod.linkvalidator.searchFields {
+	tx_camaliga_domain_model_content = link
+}

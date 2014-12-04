@@ -12,6 +12,9 @@
 			<trans-unit id="item">
 				<source>Items</source>
 			</trans-unit>
+			<trans-unit id="categories">
+				<source>Categories</source>
+			</trans-unit>
 			<trans-unit id="title">
 				<source>Layout</source>
 			</trans-unit>
@@ -41,6 +44,9 @@
 			</trans-unit>
 			<trans-unit id="template.responsive">
 				<source>A simple responsive carousel</source>
+			</trans-unit>
+			<trans-unit id="templateLayout">
+				<source>Template layout (see manual):</source>
 			</trans-unit>
 			<trans-unit id="sortBy">
 				<source>Default sort by:</source>
@@ -75,6 +81,9 @@
 			<trans-unit id="onlyDistinct">
 				<source>Show only distinct entries (parent or one child)?</source>
 			</trans-unit>
+			<trans-unit id="addPadding">
+				<source>Add padding to width and height specification?</source>
+			</trans-unit>
 			<trans-unit id="listId">
 				<source>Where is the list-page (you must add the setting {settings.listId} to the template)?</source>
 			</trans-unit>
@@ -107,6 +116,18 @@
 			</trans-unit>
 			<trans-unit id="items">
 				<source>Number of visible items ({settings.item.items}):</source>
+			</trans-unit>
+			<trans-unit id="default_categories">
+				<source>Selected default categories (AND for radio-buttons and OR for checkboxes):</source>
+			</trans-unit>
+			<trans-unit id="categoryMode">
+				<source>Category mode:</source>
+			</trans-unit>
+			<trans-unit id="categoryMode.translated">
+				<source>Use the category relations of translated elements (bugy)</source>
+			</trans-unit>
+			<trans-unit id="categoryMode.original">
+				<source>Use the category relations of the original element</source>
 			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>

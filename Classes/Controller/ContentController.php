@@ -41,7 +41,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @inject
 	 */
 	protected $contentRepository;
-
+	
 	/**
 	 * configurationManager
 	 * 
@@ -63,7 +63,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
 			'Camaliga',
 			'Pi1'
-		);*/
+		); */
 		$tsSettings = $this->configurationManager->getConfiguration(
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
@@ -79,18 +79,21 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			// if flexform setting is empty and value is available in TS
 			foreach ($tsSettings as $key=>$value) {
 				if ($key == 'img.' || $key == 'item.') continue;
-				if (!$originalSettings[$key] && isset($value)) $originalSettings[$key] = $value;
+				if (!$originalSettings[$key] && isset($value))
+					$originalSettings[$key] = $value;
 			}
 			foreach ($tsSettings['img.'] as $key=>$value) {
-				if (!$originalSettings['img'][$key] && isset($value)) $originalSettings['img'][$key] = $value;
+				if ((!$originalSettings['img'][$key] && $originalSettings['img'][$key]!=='0') && isset($value))
+					$originalSettings['img'][$key] = $value;
 			}
 			foreach ($tsSettings['item.'] as $key=>$value) {
-				if (!$originalSettings['item'][$key] && isset($value)) $originalSettings['item'][$key] = $value;
+				if ((!$originalSettings['item'][$key] && $originalSettings['item'][$key]!=='0') && isset($value))
+					$originalSettings['item'][$key] = $value;
 			}
 		}
 		$this->settings = $originalSettings;
 	}
-    
+	
 	/**
 	 * action list
 	 *
@@ -106,9 +109,22 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		} else {
 			$storagePidsOnly = array();
 		}
-		$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly);
+		$categoryUids = array();
+		if ($this->settings['defaultCatIDs']) {
+			$defaultCats = explode(',', $this->settings['defaultCatIDs']);
+			foreach ($defaultCats as $defCat) {
+				$selected = intval(trim($defCat));
+				$categoryUids[$selected] = $selected;
+			}
+		}
+		
+		if (count($categoryUids) > 0) {
+			$contents = $this->contentRepository->findByCategories($categoryUids, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly);
+		} else {
+			$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly);
+		}
 		if ($this->settings['random']) $contents = $this->sortObjects($contents);
-
+		
 		$cobjData = $this->configurationManager->getContentObject();
 		
 		$this->view->assign('uid', $cobjData->data['uid']);
@@ -116,9 +132,20 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('contents', $contents);
 		$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array
 		$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
-		$total_width = intval($this->settings['item']['items']) * (intval($this->settings['item']['width']) +
-			2 * intval($this->settings['item']['padding']) + 2 * intval($this->settings['item']['margin']));
+		$item_width = intval($this->settings['item']['width']);
+		$padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
+		$total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
+		$total_width = intval($this->settings['item']['items']) * $total_item_width;
+		$this->view->assign('paddingItemWidth', $padding_item_width);
+		$this->view->assign('totalItemWidth', $total_item_width);
+		$this->view->assign('itemWidth', (($this->settings['addPadding']) ? $padding_item_width : $item_width));
 		$this->view->assign('totalWidth', $total_width);
+		$item_height = intval($this->settings['item']['height']);
+		$padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
+		$total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
+		$this->view->assign('paddingItemHeight', $padding_item_height);
+		$this->view->assign('totalItemHeight', $total_item_height);
+		$this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
 	}
 	
 	/**
@@ -130,6 +157,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$sortBy = ($this->request->hasArgument('sortBy')) ? $this->request->getArgument('sortBy') : $this->settings['sortBy'];
 		$sortOrder = ($this->request->hasArgument('sortOrder')) ? $this->request->getArgument('sortOrder') : $this->settings['sortOrder'];
 		$categoryUids = array();
+		$configuration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
+		$catMode = intval($configuration["categoryMode"]);
+		//$catMode = intval($this->settings['categoryMode']);
+		$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
+		$cat_lang = ($catMode) ? 0 : $lang;
 		$tableName = 'tx_camaliga_domain_model_content';
 		$start = ($this->request->hasArgument('start')) ? intval($this->request->getArgument('start')) : 1;
 		$storagePidsArray = $this->contentRepository->getStoragePids();
@@ -182,32 +214,20 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$storagePidsOnlyComma = $storagePidsComma; 
 			
 		// Step 0: Categories
-		$all_cats = array();
 		$cats = array();
-		// Step 1: select all categories, because parent-title is needed too!
-		$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'uid, parent, title, description, hidden, deleted',
-			'sys_category',
-			'deleted=0 AND hidden=0');
-		$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-		if ($rows>0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-				$uid = $row['uid'];
-				$all_cats[$uid] = array();
-				$all_cats[$uid]['parent'] = $row['parent'];
-				$all_cats[$uid]['title'] = $row['title'];
-				$all_cats[$uid]['description'] = $row['description'];
-			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
-		}
-		// Step 3: select categories, used by this extension AND used by this storagePids
+		// Step 1: get all categories
+		$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\quizpalme\Camaliga\Utility\AllCategories');
+		$all_cats = $categoriesUtility->getCategoriesarrayComplete();
+		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
 		$search = false;	// search by user selection?
 		$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'DISTINCT uid_local',
-			'sys_category_record_mm AS mm, tx_camaliga_domain_model_content car',
-			"tablenames='" . $tableName . "' AND mm.uid_foreign=car.uid AND car.pid IN (" . $storagePidsOnlyComma . ')');
-		$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-		if ($rows>0) {
+			'DISTINCT mm.uid_local',
+			'sys_category AS cat, sys_category_record_mm AS mm, tx_camaliga_domain_model_content car',
+			"cat.uid = mm.uid_local AND mm.tablenames='" . $tableName . "' AND mm.uid_foreign=car.uid".
+				" AND car.pid IN (" . $storagePidsOnlyComma . ') AND cat.sys_language_uid=' . $cat_lang,
+			'',
+			'cat.title');
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
 			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
 				$uid = $row['uid_local'];
 				if (!$all_cats[$uid]['parent']) continue;
@@ -231,15 +251,18 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					$categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].",$selected" : $selected;
 					$search = true;
 				}
-				$cats[$parent]['childs'][$uid] = array();
-				$cats[$parent]['childs'][$uid]['selected'] = $selected;
-				$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
+				if ($all_cats[$uid]['title']) {
+					$cats[$parent]['childs'][$uid] = array();
+					$cats[$parent]['childs'][$uid]['selected'] = $selected;
+					$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
+				}
 			}
 			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
 			
 			// wenn nix ausgewählt wurde, aber doch submitted wurde
 			if ($this->request->hasArgument('search')) $search = true;
 			
+			// keine Suche => default cats auswählen
 			if (!$search && $this->settings['defaultCatIDs']) {
 				$defaultCats = explode(',', $this->settings['defaultCatIDs']);
 				foreach ($defaultCats as $defCat) {
@@ -257,29 +280,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		}
 		
 		if (count($categoryUids) > 0) {
-			/*
-			$collection = \TYPO3\CMS\Core\Category\Collection\CategoryCollection::load(
-				$categoryUid,
-				# Populates the entries directly on load, might be bad for memory on large collections
-				TRUE,
-				$tableName
-			);
-			
-			// Tell how many tx_camaliga_domain_model_content element are categorized for category.uid = x
-			//echo 'count: '. $collection->count();
-			
-			// Return all tx_camaliga_domain_model_content items categorized by category.uid = x
-			//$items = $collection->getItems(); 
-			
-			// Set the cursor at the beginning
-			$collection->rewind(); 
-			
-			// Return the first item of the collection
-			$item = $collection->current();
-			
-			// Move the cursor to the next one
-			$item = $collection->next();
-			*/
+			// official solution (not enough): http://wiki.typo3.org/TYPO3_6.0#Category
+			// Sort categories (doesnt work): http://www.php-kurs.com/arrays-mehrdimensional.htm 
+			// find entries by category
 			$contents = $this->contentRepository->findByCategories($categoryUids, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly);
 		} else {
 			$contents = $this->contentRepository->findAll($sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly);
@@ -288,6 +291,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				  
 		$cobjData = $this->configurationManager->getContentObject();
 		
+		//$this->view->assign('lang1', $GLOBALS['TSFE']->config['config']['sys_language_uid']);
+		$this->view->assign('lang', $cobjData->data['sys_language_uid']);
 		$this->view->assign('uid', $cobjData->data['uid']);
 		$this->view->assign('pid', $GLOBALS["TSFE"]->id);
 		$this->view->assign('contents', $contents);
@@ -299,9 +304,20 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
 		$this->view->assign('storagePIDsData', $storagePidsData);	// alle Daten zu den PIDS
 		$this->view->assign('start', $start);
-		$total_width = intval($this->settings['item']['items']) * (intval($this->settings['item']['width']) +
-			2 * intval($this->settings['item']['padding']) + 2 * intval($this->settings['item']['margin']));
+		$item_width = intval($this->settings['item']['width']);
+		$padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
+		$total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
+		$total_width = intval($this->settings['item']['items']) * $total_item_width;
+		$this->view->assign('paddingItemWidth', $padding_item_width);
+		$this->view->assign('totalItemWidth', $total_item_width);
+		$this->view->assign('itemWidth', (($this->settings['addPadding']) ? $padding_item_width : $item_width));
 		$this->view->assign('totalWidth', $total_width);
+		$item_height = intval($this->settings['item']['height']);
+		$padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
+		$total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
+		$this->view->assign('paddingItemHeight', $padding_item_height);
+		$this->view->assign('totalItemHeight', $total_item_height);
+		$this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
 	}
 
 	/**
@@ -374,6 +390,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
+	 * action flipster
+	 *
+	 * @return void
+	 */
+	public function flipsterAction() {
+		$this->listAction();
+	}
+	
+	/**
 	 * action bootstrap
 	 *
 	 * @return void
@@ -382,6 +407,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->listAction();
 	}
 
+	/**
+	 * action S Gallery
+	 *
+	 * @return void
+	 */
+	public function sgalleryAction() {
+		$this->listAction();
+	}
+	
 	/**
 	 * action AD Gallery
 	 *
@@ -482,6 +516,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
+	 * action Responsive carousel (2)
+	 *
+	 * @return void
+	 */
+	public function responsiveCarouselAction() {
+		$this->listAction();
+	}
+	
+	/**
 	 * action OWL carousel + SimpleModal
 	 *
 	 * @return void
@@ -498,6 +541,25 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	public function owlAction() {
 		$this->listAction();
 	}
+	
+	/**
+	 * action OWL carousel 2
+	 *
+	 * @return void
+	 */
+	public function owl2Action() {
+		$this->listAction();
+	}
+
+	/**
+	 * action SDKSlider
+	 *
+	 * @return void
+	 */
+	public function skdsliderAction() {
+		$this->listAction();
+	}
+	
 	/**
 	 * action test
 	 *

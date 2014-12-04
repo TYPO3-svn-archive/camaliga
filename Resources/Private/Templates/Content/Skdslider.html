@@ -1,0 +1,42 @@
+<f:layout name="Default" />
+
+This template is a jquery responsive Image Slider that requires jQuery and SKDslider from here:
+http://dandywebsolution.com/skdslider/
+Download SKDslider and include it like this with TypoScript:
+page {
+  includeJSFooter.skdslider = fileadmin/template/skdslider/src/skdslider.min.js
+  includeCSS.skdslider = fileadmin/template/skdslider/src/skdslider.css
+}
+Start it with:
+page.jsFooterInline.795 = TEXT
+page.jsFooterInline.795.value = $('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000});
+
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+ 
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+
+    <ul id="demo1" class="slides">
+      <f:for each="{contents}" as="content" iteration="iteration">
+        <li>
+			<img src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" /><br>
+			<div class="slide-desc">
+				<h2>{content.title}</h2>
+				<p>{content.shortdesc}</p>
+				<p><a href="http://{content.link}/" class="external-link-new-window">Mehr Infos</a></p>
+			</div>
+        </li>
+      </f:for>
+	</ul>
+
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>
